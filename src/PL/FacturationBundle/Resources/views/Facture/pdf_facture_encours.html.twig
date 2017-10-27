@@ -1,0 +1,208 @@
+  <page format="A4" backbottom="35mm" >
+		<page_footer>
+
+			<div id="blockfooter">
+
+			Membre d’une association de gestion agréée, le règlement des honoraires par chèque est accepté.<br>
+			<br>
+			Le Dr LAPEYRIE ne pratique pas le tiers payant  avec les organismes de complémentaire santé (mutuelles). Les démarches de remboursement sont réalisées par le patient avec la feuille de soins remise contre paiement.
+
+
+      </div><!-- /#footer -->
+		</page_footer>
+
+
+		<style>
+				#blocksocieteutilisateur {
+					width:105mm;
+				}
+				#utilisateur {
+					color: #79BBFC;
+					font-weight:bold;
+				}
+				#blockdate {
+					text-align: right;
+          padding-top: 10mm;
+				}
+
+				#blockclient {
+					padding-left:105mm;
+          padding-top: 10mm;
+				}
+
+        #barcode {
+          padding-top: 10mm;
+          text-align:right;
+        }
+
+				#headertab td {
+					background-color: #79BBFC;
+					padding-left: 2mm;
+					padding-right: 2mm;
+					padding-top:1mm;
+					padding-bottom:1mm;
+					text-align: center;
+					border-bottom: solid 1px black;
+				}
+				#siretsociete{
+					margin-top:4mm;
+					font-size:2.5mm;
+				}
+				#apesociete{
+					font-size:2.5mm;
+				}
+
+        #logo{
+          margin-top: -5mm;
+          margin-right: 15mm;
+        }
+
+				#blocktitredocument{
+					font-weight:bold;
+				}
+				#signature{
+					width:100%;
+					margin-top:10mm;
+				}
+
+				#blockfooter{
+					padding:2mm;
+					font-size:2mm;
+					text-align:center;
+				}
+				td.libellesignature{
+					vertical-align:bottom;
+					font-size: 3mm;
+					text-align:center;
+				}
+
+				td.casevide {
+					border : solid 1px black;
+					height : 20mm;
+					width:50mm;
+				}
+
+				td.total{
+
+					background-color: #F9FCBE;
+					padding-right:2mm;
+					padding-left:2mm;
+					font-weight:bold;
+					text-align:right;
+				}
+
+
+				.societe{
+					text-align:center;
+				}
+				.vide{
+					width:10mm;
+				}
+
+		</style>
+    {% set idCar = "" %}
+    {% set idFac = "" %}
+    {% set datFac = "" %}
+    {% set rueCar = "" %}
+    {% set cdeCar = "" %}
+    {% set vilCar = "" %}
+    {% set username = "" %}
+    {% set nomCar = "" %}
+    {% set prnCar = "" %}
+
+    {% for pf in listPfs %}
+    	{% set idCar = pf.facture.carnet.id %}
+    	{% set idFac = pf.facture.id %}
+    	{% set datFac = pf.facture.datFac %}
+      {% set rueCar = pf.facture.carnet.rueCar|split('*') %}
+      {% set prnCar = pf.facture.carnet.prnCar %}
+      {% set nomCar = pf.facture.carnet.nomCar %}
+      {% set cdeCar = pf.facture.carnet.cdeCar %}
+      {% set vilCar = pf.facture.carnet.vilCar %}
+      {% set username = pf.facture.user.username %}
+
+    {% endfor %}
+
+{#<img id="logo" src="http://www.silvereco.fr/wp-content/logo-chu-nimes.png" height="150" align="right">#}
+
+<div id="blocksocieteutilisateur">
+
+	<div id="utilisateur" class="societe">
+		Dr Philippe LAPEYRIE
+	</div>
+	<div id="adressesociete" class="societe">
+		Service de Chirurgie Orale<br>
+		CHU Carémeau - Place du Professeur Debré<br>
+	</div>
+	<div id="villesociete" class="societe">30000 NIMES</div>
+	<div id="telsociete" class="societe">Tel : 04.66.68.43.33</div>
+	<div id="faxsesociete" class="societe">Fax : 04.66.68.33.12</div>
+	<div id="emailutilisateur" class="societe">e-mail : <span class="email">philippe.lapeyrie@chu-nimes.fr</span></div>
+	<div id="siretsociete" class="societe">N° Siret : 34909466400068 </div>
+	<div id="apesociete" class="societe">Code A.P.E. : 8623</div>
+</div><!-- \#blocksocieteutilisateur -->
+
+<div id="blockdate">
+  Nîmes le {{datFac|date('d/m/Y')}}</div><!-- /#blockdate -->
+<div id="blockclient">
+	<div id="nomclient" class="client">
+	 <b>{{ nomCar }} {{ prnCar }}</b>
+	</div>
+	<div id="adresseclient" class="client">
+    {{ rueCar[0]~' '~rueCar[1]~' '~rueCar[2] }}<br>
+    {{ rueCar[3] }}
+	</div>
+	<div id="villeclient" class="client">
+		{{ cdeCar~" "~vilCar}}
+	</div>
+</div><!-- \#blockclient -->
+
+<div id="barcode">
+<barcode type="C39" value="{{ idFac }}/{{ datFac|date('Ymd') }}{{idFac}}" style="width:40mm; height:5mm"></barcode>
+</div>
+
+<div id="blocktitredocument" style="text-align:center; padding-top:5mm; padding-bottom:5mm;">
+{% block title %}
+  Facture : <span class="numerodevis">N° {{ datFac|date('Y-m-d') }}-{{idFac}}</span><br>
+  Paiement dès réception, chèque à l'ordre du Dr Lapeyrie ou espèces, <u>pas de CB</u>.
+{% endblock %}
+</div>
+
+{% set soustotal = 0 %}
+{% set total = 0 %}
+<table id="tableau" width="200mm" align="center">
+
+	<tr id="headertab">
+		<td>Code</td>
+		<td>Désignation</td>
+		<td>PU</td>
+		<td>Qté</td>
+		<td>Total&nbsp;€</td>
+	</tr>
+	{% for pf in listPfs %}
+	{% set soustotal = pf.ttcPrd * pf.quaPrd %}
+	<tr>
+
+		<td style="vertical-align:middle;text-align:center;">{{ pf.refPrd }}</td>
+		<td style="width:140mm;">
+
+			<span style="margin-top:2mm">{{ pf.libPrd }} <i>: {{ pf.obsPrD}}</i></span><br/>
+			<span style="font-size:2mm;margin-top:3mm;">{{ pf.produit.infoproduit.libInf }}</span>
+		</td>
+		<td style="vertical-align:middle;text-align:center;">{{ pf.ttcPrd|number_format(2,',',' ') }}</td>
+		<td style="vertical-align:middle;text-align:center;">{{ pf.quaPrd }}</td>
+		<td style="vertical-align:middle;text-align:center;">{{ soustotal|number_format(2,',',' ') }}</td>
+
+	</tr>
+	{% set total = total +  soustotal   %}
+{% endfor %}
+  <tr>
+    <td></td>
+    <td></td>
+    <td class="total" colspan="3">
+      <hr>
+      Total : {{total|number_format(2,',',' ')}}  €
+    </td>
+  </tr>
+</table>
+</page>

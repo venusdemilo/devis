@@ -1,0 +1,9 @@
+{% extends "PLFacturationBundle:ProduitDevis:show.html.twig" %}
+
+{% block button %}
+<a class="btn btn-info btn-sm" href="">Valider observations</a>
+{% endblock %}
+
+{% block observation %}
+<input type="text" class="form-control input-sm" value="{{ pd.obsPrD }}" placeholder="Observations ...">
+{% endblock %}

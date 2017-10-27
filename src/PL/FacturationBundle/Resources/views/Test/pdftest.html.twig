@@ -1,0 +1,215 @@
+  <page format="A4" backbottom="35mm" >
+		<page_footer>
+      <table id="signature" align="center">
+        <tr class="rowsignature">
+          <td class="libellesignature">
+            Signature chirurgien.
+          </td>
+          <td class="libellesignature">
+            Signature patient <br>
+            ou repésentant légal.
+          </td>
+          <td class="vide">
+          </td>
+          <td>
+          </td>
+        </tr>
+        <tr class="rowsignature">
+          <td class="casevide">
+          </td>
+          <td class="casevide">
+          </td>
+          <td class="vide">
+          </td>
+
+        </tr>
+      </table>
+			<div id="blockfooter">
+      {% if is_granted('ROLE_ADMIN')%}
+			Membre d’une association de gestion agréée, le règlement des honoraires par chèque est accepté.<br>
+			<br>
+			Le Dr LAPEYRIE ne pratique pas le tiers payant  avec les organismes de complémentaire santé (mutuelles). Les démarches de remboursement sont réalisées par le patient avec la feuille de soins remise contre paiement.
+      {% else %}
+      Les prestations hospitalières sont encaissables en régie ou dès réception d'une facture à domicile.
+      {% endif %}
+      </div><!-- /#footer -->
+		</page_footer>
+
+
+		<style>
+				#blocksocieteutilisateur {
+					width:105mm;
+				}
+				#utilisateur {
+					color: #79BBFC;
+					font-weight:bold;
+				}
+				#blockdate {
+					text-align: right;
+          padding-top: 10mm;
+				}
+
+				#blockclient {
+					padding-left:105mm;
+          padding-top: 10mm;
+				}
+
+        #barcode {
+          padding-top: 10mm;
+          text-align:right;
+        }
+
+				#headertab td {
+					background-color: #79BBFC;
+					padding-left: 2mm;
+					padding-right: 2mm;
+					padding-top:1mm;
+					padding-bottom:1mm;
+					text-align: center;
+					border-bottom: solid 1px black;
+				}
+				#siretsociete{
+					margin-top:4mm;
+					font-size:2.5mm;
+				}
+				#apesociete{
+					font-size:2.5mm;
+				}
+
+        #logo{
+          margin-top: -5mm;
+          margin-right: 15mm;
+        }
+
+				#blocktitredocument{
+					font-weight:bold;
+				}
+				#signature{
+					width:100%;
+					margin-top:10mm;
+				}
+
+				#blockfooter{
+					padding:2mm;
+					font-size:2mm;
+					text-align:center;
+				}
+				td.libellesignature{
+					vertical-align:bottom;
+					font-size: 3mm;
+					text-align:center;
+				}
+
+				td.casevide {
+					border : solid 1px black;
+					height : 20mm;
+					width:50mm;
+				}
+
+				td.total{
+
+					background-color: #F9FCBE;
+					padding-right:2mm;
+					padding-left:2mm;
+					font-weight:bold;
+					text-align:right;
+				}
+
+
+				.societe{
+					text-align:center;
+				}
+				.vide{
+					width:10mm;
+				}
+
+		</style>
+
+
+<img id="logo" src="http://www.silvereco.fr/wp-content/logo-chu-nimes.png" height="150" align="right">
+<div id="blocksocieteutilisateur">
+
+	<div id="utilisateur" class="societe">
+		Dr Philippe LAPEYRIE
+	</div>
+	<div id="adressesociete" class="societe">
+		Service de Chirurgie Orale<br>
+		CHU Carémeau - Place du Professeur Debré<br>
+	</div>
+	<div id="villesociete" class="societe">30000 NIMES</div>
+	<div id="telsociete" class="societe">Tel : 04.66.68.32.66</div>
+	<div id="faxsesociete" class="societe">Fax : 04.66.68.68.54</div>
+	<div id="emailutilisateur" class="societe">e-mail : <span class="email">philippe@lapeyrie.fr</span></div>
+	<div id="siretsociete" class="societe">N° Siret : 34909466400068 </div>
+	<div id="apesociete" class="societe">Code A.P.E. : 8623</div>
+
+<div id="utilisateur" class="societe">
+  Service de Chirurgie Orale
+</div>
+<div id="adressesociete" class="societe">
+  CHU Carémeau - Place du Professeur Debré<br>
+</div>
+<div id="villesociete" class="societe">30000 NIMES</div>
+<div id="telsociete" class="societe">Tél :04.66.68.32.66</div>
+<div id="faxsesociete" class="societe">Fax : 04.66.68.45.92</div>
+<div id="emailutilisateur" class="societe">e-mail : <span class="email">sec.odonto@chu-nimes.fr</span></div>
+<br>
+<br>
+<br>
+
+</div><!-- \#blocksocieteutilisateur -->
+
+<div id="blockdate">
+  Nîmes le 18 juin 1964</div><!-- /#blockdate -->
+<div id="blockclient">
+	<div id="nomclient" class="client">
+	 <b>TOTO Lecoco</b>
+	</div>
+	<div id="adresseclient" class="client">
+10 rue des Brosses
+	</div>
+	<div id="villeclient" class="client">
+75000 PARIS
+	</div>
+</div><!-- \#blockclient -->
+<div id="barcode">
+<barcode type="C39" value="14587963" style="width:40mm; height:5mm"></barcode>
+</div>
+<div id="blocktitredocument" style="text-align:center; padding-top:5mm; padding-bottom:5mm;">Devis : <span class="numerodevis">N° 3552, valable 3 mois.</span></div>
+
+
+<table id="tableau" width="200mm" align="center">
+
+	<tr id="headertab">
+		<td>Code</td>
+		<td>Désignation</td>
+		<td>PU</td>
+		<td>Qté</td>
+		<td>Total&nbsp;€</td>
+	</tr>
+
+	<tr>
+		<td style="vertical-align:middle;text-align:center;"></td>
+		<td style="width:140mm;">
+
+			<span style="margin-top:2mm"> <i>:</i></span><br/>
+			<span style="font-size:2mm;margin-top:3mm;"></span>
+		</td>
+		<td style="vertical-align:middle;text-align:center;"></td>
+		<td style="vertical-align:middle;text-align:center;"></td>
+		<td style="vertical-align:middle;text-align:center;"></td>
+
+	</tr>
+
+
+  <tr>
+    <td></td>
+    <td></td>
+    <td class="total" colspan="3">
+      <hr>
+      Total : 99999  €
+    </td>
+  </tr>
+</table>
+
+</page>

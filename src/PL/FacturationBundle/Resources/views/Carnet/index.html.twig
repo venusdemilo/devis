@@ -1,0 +1,122 @@
+{% extends "PLFacturationBundle::layout.html.twig" %}
+
+
+{% block link %}
+<link rel="stylesheet" href="{{asset('bundles/plfacturation/css/jquery.dataTables.min.css') }}">
+{% endblock %}
+{# blocks panel #}
+{% block panelcolor %}
+panel-default
+{% endblock %}
+{% block awesome %}
+fa-male
+{% endblock %}
+{% block paneltitle %}
+Clients
+{% endblock %}
+{# endblock panels #}
+
+{% block aidetexte %}
+
+{% endblock %}
+
+{% block principal %}
+  <table id="tableauclient" class="table table-striped table-condensed">
+    <caption>
+      <h4>Liste des clients</h4>
+    </caption>
+    <thead>
+      <tr>
+        <td>Nom</td><td>Prénom</td><td>@dress</td><td>Adresse</td><td>C.P.</td><td>Ville</td><td>Tél.</td><td>Création</td>
+      </tr>
+    </thead>
+    <tbody>
+      {% for carnet in listCarnets %}
+      {% set adresse = carnet.rueCar|replace({'*':' '}) %}
+      <tr data-idcarnet="{{ carnet.id }}" data-nomcar="{{ carnet.nomCar }}" data-prncar="{{ carnet.prnCar }}">
+        <td>{{ carnet.nomCar }}
+          {% if carnet.tieCar == true %}<i style="color:red;" class="fa fa-paperclip" aria-hidden="true"></i>{% endif %}
+
+        </td>
+        <td>{{ carnet.prnCar }}</td>
+        <td>{{ carnet.melCar }}</td>
+        <td>{{ adresse }}</td>
+        <td>{{ carnet.cdeCar }}</td>
+        <td>{{ carnet.vilCar }}</td>
+        <td>{{ carnet.telCar }}</td>
+        <td>{{ carnet.datCar|date('d/m/Y') }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+    <tfoot>
+      <tr>
+        <td>Nom</td><td>Prénom</td><td>@dress</td><td>Adresse</td><td>C.P.</td><td>Ville</td><td>Tél.</td><td>Création</td>
+      </tr>
+    </tfoot>
+  </table>
+
+
+  </div><!-- /.row -->
+  <div class="row">
+  <div class="col-sm-8 col-sm-offset-2 text-center">
+    <div class="btn-group ">
+    <a class="btn btn-info btn-sm" id="nouveauclient" href="#"><i class="fa fa-plus"></i> Nouveau client</a>
+    <button class="btn btn-default btn-sm" id="creerdevis"><i class="fa fa-cart-arrow-down"></i> Créer devis</button>
+    <button class="btn btn-default btn-sm" id="modifierclient"><i class="fa fa-pencil"></i> Modifier client</button>
+    <button class="btn btn-default btn-sm" id="supprimerclient"><i class="fa fa-remove"></i> Supprimer client</button>
+    <!--
+    <a class="btn btn-default" href="#"><i class="fa fa-pencil"></i> Modifier Facture</a>
+    <a class="btn btn-default" href="#"><i class="fa fa-eye"></i>Aperçu/Impression</a>
+    <a class="btn btn-default" href="#"><i class="fa fa-thumbs-o-up"></i> Valider</a>
+    <a class="btn btn-default" href="#"><i class="fa fa-eur"></i> Régler</a>
+    <a class="btn btn-default" href="#"><i class="fa fa-puzzle-piece"></i> Acompte</a>
+    <a class="btn btn-default" href="#"><i class="fa fa-remove"></i> Supprimer</a>
+    <a class="btn btn-default" href="#"><i class="fa fa-print"></i> Impression Liste</a>
+  -->
+    </div>
+  </div>
+
+  <div id="modalnouveauclient" class="modal fade">
+  	<div class="modal-dialog">
+  		<div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Ajouter un client</h4>
+        </div>
+        <div class="modal-body">
+          {{ render(controller("PLFacturationBundle:Carnet:new")) }}
+        </div>
+  		</div>
+  	</div>
+  </div>
+
+
+
+  <div id="modalsupprimerclient" class="modal fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Supprimer un client</h4>
+        </div>
+        <div class="modal-body">
+          <p>Si des devis sont enregistrés au nom du client la suppression est impossible.</p>
+          <p>Souhaitez- vous continuer ?</p>
+          <div class="btn-group ">
+          <button class="btn btn-danger btn-sm" id="confirmersupprimerclient"><i class="fa fa-remove"></i> Supprimer</button>
+          <button class="btn btn-info btn-sm" id="annulersupprimerclient">Annuler</button>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+ {% endblock %}
+
+ {% block script %}
+<script src="{{asset('bundles/plfacturation/js/jquery.dataTables.min.js') }}"></script>
+ {% endblock %}
+ {% block javascripts %}{{ parent() }}
+ $.getScript("{{ asset('bundles/plfacturation/js/carnet.js') }}");
+ {% endblock %}

@@ -1,0 +1,73 @@
+{% extends "PLFacturationBundle::layout.html.twig" %}
+{% block link %}
+{% endblock %}
+
+{% block awesome %}
+
+{% endblock %}
+
+{% block commentaire %}
+
+{% endblock %}
+
+{% block aidetexte %}
+{% endblock %}
+{% block principal %}
+  {% if app.request.attributes.get("_route") == 'pl_facturation_produit_edit' %}
+  <h3>Formulaire de modification d'un produit</h3>
+  {% else %}
+  <h3>Formulaire d'ajout d'un produit</h3>
+  {% endif %}
+
+  <div class="well">
+    {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+    {# Les erreurs générales du formulaire. #}
+
+        {{ form_errors(form) }}
+    <div class="form-group">
+      {{ form_label(form.refProd, "Code produit", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+      <div class="col-sm-4">
+        {{ form_widget(form.refProd, {'attr': {'class': 'form-control'}}) }}
+      </div><!-- col -->
+    </div><!-- /form-group -->
+
+    <div class="form-group">
+      {{ form_label(form.ttcProd, "Tarif produit", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+      <div class="col-sm-1">
+        {{ form_widget(form.ttcProd, {'attr': {'class': 'form-control','type':'number','min':'0'}}) }}
+      </div><!-- col -->
+    </div><!-- /form-group -->
+
+    <div class="form-group">
+      {{ form_label(form.libProd, "Libellé produit", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+      <div class="col-sm-6">
+        {{ form_widget(form.libProd, {'attr': {'class': 'form-control'}}) }}
+      </div><!-- col -->
+    </div><!-- /form-group -->
+
+    <div class="form-group">
+      {{ form_label(form.infoproduit, "Information produit", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+      <div class="col-sm-4">
+        {{ form_widget(form.infoproduit, {'attr': {'class': 'form-control'}}) }}
+      </div><!-- col -->
+    </div><!-- /form-group -->
+
+    <div class="form-group">
+      {{ form_label(form.famille, "Famille du produit", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+      <div class="col-sm-4">
+        {{ form_widget(form.famille, {'attr': {'class': 'form-control'}}) }}
+      </div><!-- col -->
+    </div><!-- /form-group -->
+    {{ form_widget(form.Enregistrer, {'attr': {'class': 'btn btn-info'}}) }}
+    {{form_rest(form)}}
+    {{ form_end(form) }}
+  </div><!-- /well -->
+
+
+
+{%  endblock %}
+{% block script %}
+{% endblock %}
+{% block javascripts %}{{ parent() }}
+
+{% endblock %}

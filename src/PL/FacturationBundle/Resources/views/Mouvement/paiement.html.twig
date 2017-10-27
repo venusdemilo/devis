@@ -1,0 +1,104 @@
+{% extends "PLFacturationBundle::layout.html.twig" %}
+{% block link %}
+{% endblock %}
+
+{# blocks panel #}
+{% block panelcolor %}
+panel-default
+{% endblock %}
+{% block awesome %}
+fa-euro
+{% endblock %}
+{% block paneltitle %}
+Règlement
+{% endblock %}
+{# endblock panels #}
+{% block commentaire %}
+{% endblock %}
+
+{% block aidetexte %}
+{% endblock %}
+{% block principal %}
+<h4>Paiement de la facture n° {{ facture.datFac|date('Y-m-d') }}-{{ facture.id}} - {{facture.carnet.nomCar}} {{facture.carnet.prnCar}}</h4>
+{{ form_start(form,{'attr': {'class': 'form-horizontal well well-lg'}})}}
+{{ form_errors(form) }}
+<div class="row">
+  <div class="form-group">
+    {{form_label(form.totFac,"Total facture :",{label_attr:{'class':'col-sm-3 control-label'}})}}
+    <div class="col-sm-1">
+      {{form_widget(form.totFac,{'attr':{'class': ' input-sm'}})}}
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="form-group">
+    {{form_label(form.paiFac,"Déjà payé :",{label_attr:{'class':'col-sm-3 control-label'}})}}
+    <div class="col-sm-1">
+      {{form_widget(form.paiFac,{'attr':{'class': ' input-sm'}})}}
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="form-group">
+    {{form_label(form.remFac,"Remise :",{label_attr:{'class':'col-sm-3 control-label'}})}}
+    <div class="col-sm-1">
+      {{form_widget(form.remFac,{'attr':{'class': ' input-sm'}})}}
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="form-group">
+    {{form_label(form.paiement,"A payer :",{label_attr:{'class':'col-sm-3 control-label'}})}}
+    <div class="col-sm-1">
+      {{form_widget(form.paiement,{'attr':{'class': ' input-sm'}})}}
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="form-group">
+    {{form_label(form.modepaiement,"Mode paiement :",{label_attr:{'class':'col-sm-3 control-label'}})}}
+    <div class="col-sm-1">
+      {{form_widget(form.modepaiement,{'attr':{'class': ' input-sm'}})}}
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="form-group">
+    {{form_label(form.banque,"Banque :",{label_attr:{'class':'col-sm-3 control-label'}})}}
+    <div class="col-sm-1">
+      {{form_widget(form.banque,{'attr':{'class': ' input-sm'}})}}
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="form-group">
+    {{form_label(form.numcheque,"n° chèque :",{label_attr:{'class':'col-sm-3 control-label'}})}}
+    <div class="col-sm-1">
+      {{form_widget(form.numcheque,{'attr':{'class': ' input-sm'}})}}
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="form-group">
+    {{form_label(form.porteur,"Porteur :",{label_attr:{'class':'col-sm-3 control-label'}})}}
+    <div class="col-sm-1">
+      {{form_widget(form.porteur,{'attr':{'class': ' input-sm'}})}}
+    </div>
+  </div>
+</div>
+{{ form_rest(form)}}
+{{form_end(form)}}
+{% endblock %}
+
+
+{% block script %}
+{% endblock %}
+{% block javascripts %}{{ parent() }}
+{# $.getScript("{{ asset('bundles/plfacturation/js/factureindex.js') }}"); #}
+{% endblock %}

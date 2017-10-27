@@ -1,0 +1,40 @@
+security:
+    encoders:
+        PL\UserBundle\Entity\User: sha512
+
+    role_hierarchy:
+        ROLE_ADMIN:       [ROLE_PUBLIC, ROLE_PRIVATE, ROLE_HN]
+        ROLE_SUPER_ADMIN: ROLE_ADMIN
+
+    providers:
+      main:
+            id: fos_user.user_provider.username
+
+    firewalls:
+
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        main:
+            pattern: ^/
+            form_login:
+                login_path: fos_user_security_login
+                check_path: fos_user_security_check
+                csrf_provider: security.csrf.token_manager
+            logout:
+                path: fos_user_security_logout
+                target: /
+            anonymous: true
+
+    access_control:
+        - { path: ^/login, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin/, role: [ROLE_PRIVATE, ROLE_HN] }
+        - { path: ^/devistofacture/, role: [ROLE_PRIVATE, ROLE_HN] }
+        - { path: ^/facture/, role: [ROLE_PRIVATE, ROLE_HN] }
+        - { path: ^/compte/, role: [ROLE_PRIVATE, ROLE_HN] }
+        - { path: ^/carnet, role: IS_AUTHENTICATED_FULLY }
+        - { path: ^/devis, role: IS_AUTHENTICATED_FULLY }
+        - { path: ^/produitdevis, role: IS_AUTHENTICATED_FULLY }

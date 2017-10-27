@@ -1,0 +1,157 @@
+{# herite du Layout Core #}
+{% extends "PLCoreBundle::layout.html.twig" %}
+{% block link %}
+{% endblock %}
+
+{% block main %}
+<div class="container">
+<div class="jumbotron" id="layer1">
+ <div class="panel panel-info">
+   <div class="panel-heading">
+     <h1><i class="fa fa-calculator fa-2x" aria-hidden="true"></i> Bienvenue</h1>
+   </div>
+ </div>
+ <div class="panel-body">
+   <p>
+     Nunc iaculis mauris urna, at egestas odio malesuada nec. Nullam et mattis ante, eget suscipit neque. Mauris nec nisi vehicula, eleifend elit ac, pulvinar ligula. Sed efficitur quis massa venenatis eleifend. Cras a ultricies mauris, et lobortis metus. In rhoncus dui aliquet quam ultricies vestibulum. Suspendisse sagittis imperdiet dolor et pellentesque. Nam iaculis ante ac nisi consequat tristique. Aliquam id massa viverra, auctor ipsum a, pulvinar justo. Integer dignissim eleifend vehicula. In nec ullamcorper dui, eu accumsan justo. Nullam sit amet sem malesuada, tristique sapien at, posuere turpis. Integer metus lacus, pulvinar a purus at, porta faucibus augue. Aenean mauris elit, sollicitudin eget ante eget, accumsan venenatis diam. Donec enim enim, porta vel venenatis quis, tempus laoreet nunc. Vivamus posuere euismod ipsum nec laoreet.
+   </p>
+   <div class="row">
+     <div class="col-sm-6">
+       Morbi sit amet nibh rutrum, hendrerit turpis vitae, luctus diam. In vel odio sit amet turpis varius pretium. Nulla ac quam volutpat, finibus massa sed, congue lectus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse lacinia, nulla id eleifend maximus, urna elit dictum ligula, sit amet mollis turpis quam quis dui. Mauris urna neque, faucibus vel volutpat id, egestas sit amet enim. Suspendisse volutpat non libero at cursus.
+       <br><br>
+       Cras ligula neque, scelerisque non tellus sed, lobortis gravida quam. Vivamus massa magna, congue nec consectetur fringilla, dictum quis ligula. Nulla non libero sem. Fusce sapien velit, efficitur egestas interdum cursus, blandit eget nibh. Pellentesque tellus nunc, facilisis et elit ut, dignissim suscipit augue. Aenean elit ex, porta sed enim sodales, suscipit vulputate elit.
+   </div>
+    <div class="col-sm-6">
+       <a class="btn btn-lg btn-info" href="{{path('pl_facturation_carnet_client_index')}}">
+         <i class="fa fa-plug fa-2x"></i> CONNEXION<br> cliquez ici
+       </a>
+       <br>
+         Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam egestas massa velit, commodo egestas sem vulputate eu. Vivamus vestibulum neque eu magna volutpat feugiat. Mauris a erat eget nulla volutpat convallis. Vivamus tincidunt dolor nec nisi maximus, at venenatis metus cursus. Vestibulum vel enim vitae sem porta aliquet. Aliquam euismod blandit erat sed convallis. Suspendisse faucibus hendrerit pretium. Mauris nec nisl ut sem vehicula posuere eget at nisi. Cras ligula neque, scelerisque non tellus sed, lobortis gravida quam. Vivamus massa magna, congue nec consectetur fringilla, dictum quis ligula. Nulla non libero sem. Fusce sapien velit, efficitur egestas interdum cursus, blandit eget nibh. Pellentesque tellus nunc, facilisis et elit ut, dignissim suscipit augue. Aenean elit ex, porta sed enim sodales, suscipit vulputate elit.
+   </div>
+  </div>
+ </div>
+ <div class="panel-footer">
+      Sed quis ex egestas magna sagittis faucibus vitae vel orci. In eu neque metus. Integer nec quam lacinia, tempus leo a, tempor elit
+  </div>
+</div><!-- /#jumbotron -->
+
+
+
+<div class="jumbotron" id="layer2">
+ <div class="panel panel-success">
+   <div class="panel-heading">
+     <h1><i class="fa fa-male fa-2x" aria-hidden="true"></i> Usages</h1>
+   </div>
+ </div>
+ <div class="panel-body">
+   <p>
+     Nunc iaculis mauris urna, at egestas odio malesuada nec. Nullam et mattis ante, eget suscipit neque. Mauris nec nisi vehicula, eleifend elit ac, pulvinar ligula. Sed efficitur quis massa venenatis eleifend. Cras a ultricies mauris, et lobortis metus. In rhoncus dui aliquet quam ultricies vestibulum. Suspendisse sagittis imperdiet dolor et pellentesque. Nam iaculis ante ac nisi consequat tristique. Aliquam id massa viverra, auctor ipsum a, pulvinar justo. Integer dignissim eleifend vehicula. In nec ullamcorper dui, eu accumsan justo. Nullam sit amet sem malesuada, tristique sapien at, posuere turpis. Integer metus lacus, pulvinar a purus at, porta faucibus augue. Aenean mauris elit, sollicitudin eget ante eget, accumsan venenatis diam. Donec enim enim, porta vel venenatis quis, tempus laoreet nunc. Vivamus posuere euismod ipsum nec laoreet.
+   </p>
+   <div class="row">
+     <div class="col-sm-6">
+       Morbi sit amet nibh rutrum, hendrerit turpis vitae, luctus diam. In vel odio sit amet turpis varius pretium. Nulla ac quam volutpat, finibus massa sed, congue lectus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse lacinia, nulla id eleifend maximus, urna elit dictum ligula, sit amet mollis turpis quam quis dui. Mauris urna neque, faucibus vel volutpat id, egestas sit amet enim. Suspendisse volutpat non libero at cursus.
+       <br><br>
+       Cras ligula neque, scelerisque non tellus sed, lobortis gravida quam. Vivamus massa magna, congue nec consectetur fringilla, dictum quis ligula. Nulla non libero sem. Fusce sapien velit, efficitur egestas interdum cursus, blandit eget nibh. Pellentesque tellus nunc, facilisis et elit ut, dignissim suscipit augue. Aenean elit ex, porta sed enim sodales, suscipit vulputate elit.
+   </div>
+    <div class="col-sm-6">
+
+         Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam egestas massa velit, commodo egestas sem vulputate eu. Vivamus vestibulum neque eu magna volutpat feugiat. Mauris a erat eget nulla volutpat convallis. Vivamus tincidunt dolor nec nisi maximus, at venenatis metus cursus. Vestibulum vel enim vitae sem porta aliquet. Aliquam euismod blandit erat sed convallis. Suspendisse faucibus hendrerit pretium. Mauris nec nisl ut sem vehicula posuere eget at nisi. Cras ligula neque, scelerisque non tellus sed, lobortis gravida quam. Vivamus massa magna, congue nec consectetur fringilla, dictum quis ligula. Nulla non libero sem. Fusce sapien velit, efficitur egestas interdum cursus, blandit eget nibh. Pellentesque tellus nunc, facilisis et elit ut, dignissim suscipit augue. Aenean elit ex, porta sed enim sodales, suscipit vulputate elit.
+   </div>
+  </div>
+ </div>
+ <div class="panel-footer">
+      Sed quis ex egestas magna sagittis faucibus vitae vel orci. In eu neque metus. Integer nec quam lacinia, tempus leo a, tempor elit
+  </div>
+</div><!-- /#jumbotron -->
+<div class="jumbotron" id="layer3">
+ <div class="panel panel-danger">
+   <div class="panel-heading">
+     <h1><i class="fa fa-lock fa-2x" aria-hidden="true"></i> Sécurité</h1>
+   </div>
+ </div>
+ <div class="panel-body">
+   <p>
+     Nunc iaculis mauris urna, at egestas odio malesuada nec. Nullam et mattis ante, eget suscipit neque. Mauris nec nisi vehicula, eleifend elit ac, pulvinar ligula. Sed efficitur quis massa venenatis eleifend. Cras a ultricies mauris, et lobortis metus. In rhoncus dui aliquet quam ultricies vestibulum. Suspendisse sagittis imperdiet dolor et pellentesque. Nam iaculis ante ac nisi consequat tristique. Aliquam id massa viverra, auctor ipsum a, pulvinar justo. Integer dignissim eleifend vehicula. In nec ullamcorper dui, eu accumsan justo. Nullam sit amet sem malesuada, tristique sapien at, posuere turpis. Integer metus lacus, pulvinar a purus at, porta faucibus augue. Aenean mauris elit, sollicitudin eget ante eget, accumsan venenatis diam. Donec enim enim, porta vel venenatis quis, tempus laoreet nunc. Vivamus posuere euismod ipsum nec laoreet.
+   </p>
+   <div class="row">
+     <div class="col-sm-6">
+       Morbi sit amet nibh rutrum, hendrerit turpis vitae, luctus diam. In vel odio sit amet turpis varius pretium. Nulla ac quam volutpat, finibus massa sed, congue lectus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse lacinia, nulla id eleifend maximus, urna elit dictum ligula, sit amet mollis turpis quam quis dui. Mauris urna neque, faucibus vel volutpat id, egestas sit amet enim. Suspendisse volutpat non libero at cursus.
+       <br><br>
+       Cras ligula neque, scelerisque non tellus sed, lobortis gravida quam. Vivamus massa magna, congue nec consectetur fringilla, dictum quis ligula. Nulla non libero sem. Fusce sapien velit, efficitur egestas interdum cursus, blandit eget nibh. Pellentesque tellus nunc, facilisis et elit ut, dignissim suscipit augue. Aenean elit ex, porta sed enim sodales, suscipit vulputate elit.
+   </div>
+    <div class="col-sm-6">
+
+         Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam egestas massa velit, commodo egestas sem vulputate eu. Vivamus vestibulum neque eu magna volutpat feugiat. Mauris a erat eget nulla volutpat convallis. Vivamus tincidunt dolor nec nisi maximus, at venenatis metus cursus. Vestibulum vel enim vitae sem porta aliquet. Aliquam euismod blandit erat sed convallis. Suspendisse faucibus hendrerit pretium. Mauris nec nisl ut sem vehicula posuere eget at nisi. Cras ligula neque, scelerisque non tellus sed, lobortis gravida quam. Vivamus massa magna, congue nec consectetur fringilla, dictum quis ligula. Nulla non libero sem. Fusce sapien velit, efficitur egestas interdum cursus, blandit eget nibh. Pellentesque tellus nunc, facilisis et elit ut, dignissim suscipit augue. Aenean elit ex, porta sed enim sodales, suscipit vulputate elit.
+   </div>
+  </div>
+ </div>
+ <div class="panel-footer">
+      Sed quis ex egestas magna sagittis faucibus vitae vel orci. In eu neque metus. Integer nec quam lacinia, tempus leo a, tempor elit
+  </div>
+</div><!-- /#jumbotron -->
+<div class="jumbotron" id="layer4">
+ <div class="panel panel-primary">
+   <div class="panel-heading">
+     <h1><i class="fa fa-cloud fa-2x" aria-hidden="true"></i> Disponibilité</h1>
+   </div>
+ </div>
+ <div class="panel-body">
+   <p>
+     Nunc iaculis mauris urna, at egestas odio malesuada nec. Nullam et mattis ante, eget suscipit neque. Mauris nec nisi vehicula, eleifend elit ac, pulvinar ligula. Sed efficitur quis massa venenatis eleifend. Cras a ultricies mauris, et lobortis metus. In rhoncus dui aliquet quam ultricies vestibulum. Suspendisse sagittis imperdiet dolor et pellentesque. Nam iaculis ante ac nisi consequat tristique. Aliquam id massa viverra, auctor ipsum a, pulvinar justo. Integer dignissim eleifend vehicula. In nec ullamcorper dui, eu accumsan justo. Nullam sit amet sem malesuada, tristique sapien at, posuere turpis. Integer metus lacus, pulvinar a purus at, porta faucibus augue. Aenean mauris elit, sollicitudin eget ante eget, accumsan venenatis diam. Donec enim enim, porta vel venenatis quis, tempus laoreet nunc. Vivamus posuere euismod ipsum nec laoreet.
+   </p>
+   <div class="row">
+     <div class="col-sm-6">
+       Morbi sit amet nibh rutrum, hendrerit turpis vitae, luctus diam. In vel odio sit amet turpis varius pretium. Nulla ac quam volutpat, finibus massa sed, congue lectus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse lacinia, nulla id eleifend maximus, urna elit dictum ligula, sit amet mollis turpis quam quis dui. Mauris urna neque, faucibus vel volutpat id, egestas sit amet enim. Suspendisse volutpat non libero at cursus.
+       <br><br>
+       Cras ligula neque, scelerisque non tellus sed, lobortis gravida quam. Vivamus massa magna, congue nec consectetur fringilla, dictum quis ligula. Nulla non libero sem. Fusce sapien velit, efficitur egestas interdum cursus, blandit eget nibh. Pellentesque tellus nunc, facilisis et elit ut, dignissim suscipit augue. Aenean elit ex, porta sed enim sodales, suscipit vulputate elit.
+   </div>
+    <div class="col-sm-6">
+
+         Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam egestas massa velit, commodo egestas sem vulputate eu. Vivamus vestibulum neque eu magna volutpat feugiat. Mauris a erat eget nulla volutpat convallis. Vivamus tincidunt dolor nec nisi maximus, at venenatis metus cursus. Vestibulum vel enim vitae sem porta aliquet. Aliquam euismod blandit erat sed convallis. Suspendisse faucibus hendrerit pretium. Mauris nec nisl ut sem vehicula posuere eget at nisi. Cras ligula neque, scelerisque non tellus sed, lobortis gravida quam. Vivamus massa magna, congue nec consectetur fringilla, dictum quis ligula. Nulla non libero sem. Fusce sapien velit, efficitur egestas interdum cursus, blandit eget nibh. Pellentesque tellus nunc, facilisis et elit ut, dignissim suscipit augue. Aenean elit ex, porta sed enim sodales, suscipit vulputate elit.
+   </div>
+  </div>
+ </div>
+ <div class="panel-footer">
+      Sed quis ex egestas magna sagittis faucibus vitae vel orci. In eu neque metus. Integer nec quam lacinia, tempus leo a, tempor elit
+  </div>
+</div><!-- /#jumbotron -->
+<div class="jumbotron" id="layer5">
+ <div class="panel panel-warning">
+   <div class="panel-heading">
+     <h1><i class="fa fa-question-circle fa-2x" aria-hidden="true"></i> Aide</h1>
+   </div>
+ </div>
+ <div class="panel-body">
+   <p>
+     Nunc iaculis mauris urna, at egestas odio malesuada nec. Nullam et mattis ante, eget suscipit neque. Mauris nec nisi vehicula, eleifend elit ac, pulvinar ligula. Sed efficitur quis massa venenatis eleifend. Cras a ultricies mauris, et lobortis metus. In rhoncus dui aliquet quam ultricies vestibulum. Suspendisse sagittis imperdiet dolor et pellentesque. Nam iaculis ante ac nisi consequat tristique. Aliquam id massa viverra, auctor ipsum a, pulvinar justo. Integer dignissim eleifend vehicula. In nec ullamcorper dui, eu accumsan justo. Nullam sit amet sem malesuada, tristique sapien at, posuere turpis. Integer metus lacus, pulvinar a purus at, porta faucibus augue. Aenean mauris elit, sollicitudin eget ante eget, accumsan venenatis diam. Donec enim enim, porta vel venenatis quis, tempus laoreet nunc. Vivamus posuere euismod ipsum nec laoreet.
+   </p>
+   <div class="row">
+     <div class="col-sm-6">
+       Morbi sit amet nibh rutrum, hendrerit turpis vitae, luctus diam. In vel odio sit amet turpis varius pretium. Nulla ac quam volutpat, finibus massa sed, congue lectus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Suspendisse lacinia, nulla id eleifend maximus, urna elit dictum ligula, sit amet mollis turpis quam quis dui. Mauris urna neque, faucibus vel volutpat id, egestas sit amet enim. Suspendisse volutpat non libero at cursus.
+       <br><br>
+       Cras ligula neque, scelerisque non tellus sed, lobortis gravida quam. Vivamus massa magna, congue nec consectetur fringilla, dictum quis ligula. Nulla non libero sem. Fusce sapien velit, efficitur egestas interdum cursus, blandit eget nibh. Pellentesque tellus nunc, facilisis et elit ut, dignissim suscipit augue. Aenean elit ex, porta sed enim sodales, suscipit vulputate elit.
+   </div>
+    <div class="col-sm-6">
+
+         Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam egestas massa velit, commodo egestas sem vulputate eu. Vivamus vestibulum neque eu magna volutpat feugiat. Mauris a erat eget nulla volutpat convallis. Vivamus tincidunt dolor nec nisi maximus, at venenatis metus cursus. Vestibulum vel enim vitae sem porta aliquet. Aliquam euismod blandit erat sed convallis. Suspendisse faucibus hendrerit pretium. Mauris nec nisl ut sem vehicula posuere eget at nisi. Cras ligula neque, scelerisque non tellus sed, lobortis gravida quam. Vivamus massa magna, congue nec consectetur fringilla, dictum quis ligula. Nulla non libero sem. Fusce sapien velit, efficitur egestas interdum cursus, blandit eget nibh. Pellentesque tellus nunc, facilisis et elit ut, dignissim suscipit augue. Aenean elit ex, porta sed enim sodales, suscipit vulputate elit.
+   </div>
+  </div>
+ </div>
+ <div class="panel-footer">
+      Sed quis ex egestas magna sagittis faucibus vitae vel orci. In eu neque metus. Integer nec quam lacinia, tempus leo a, tempor elit
+  </div>
+</div><!-- /#jumbotron -->
+</div><!-- /.container -->
+ {% endblock %}
+
+ {% block javascripts %}
+ $('li>a').on('click', function(e) {
+    e.preventDefault();
+    var hash = this.hash;
+    $('html, body').animate({
+      scrollTop: $(this.hash).offset().top
+    }, 1000, function(){
+      window.location.hash = hash;
+    });
+  });
+  {% endblock %}

@@ -1,0 +1,58 @@
+
+{% extends "PLFacturationBundle::layout.html.twig" %}
+{% block link %}
+{% endblock %}
+
+{# blocks panel #}
+{% block panelcolor %}
+panel-default
+{% endblock %}
+{% block awesome %}
+fa-gear
+{% endblock %}
+{% block paneltitle %}
+Paramétrage
+{% endblock %}
+{# endblock panels #}
+
+{% block commentaire %}
+{% endblock %}
+
+{% block aidetexte %}
+{% endblock %}
+{% block principal %}
+<header class="page-header">
+{% if app.request.attributes.get("_route") == 'pl_facturation_famille_edit' %}
+<h3>Formulaire de modification d'une famille produit</h3>
+{% else %}
+<h3>Formulaire d'ajout d'une famille produit</h3>
+{% endif %}
+</header>
+<div class="well">
+  {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+  <div class="form-group">
+    {{ form_label(form.libFam, "Nom de la famille de produit :", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+    <div class="col-sm-4">
+      {{ form_widget(form.libFam, {'attr': {'class': 'form-control'}}) }}
+    </div><!-- col -->
+  </div><!-- /form-group -->
+  <div class="form-group">
+    {{ form_label(form.drtFam, "Droits :", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+    <div class="col-sm-2">
+      {{ form_widget(form.drtFam, {'attr': {'class': 'form-control'}}) }}
+    </div><!-- col -->
+  </div><!-- /form-group -->
+
+
+  {{ form_widget(form.enregistrer, {'attr': {'class': 'btn btn-info'}}) }}
+
+  {{ form_rest(form) }}
+  {{ form_end(form) }}
+</div><!-- /well -->
+{%  endblock %}
+{% block script %}
+
+{% endblock %}
+{% block javascripts %}{{ parent() }}
+
+{% endblock %}

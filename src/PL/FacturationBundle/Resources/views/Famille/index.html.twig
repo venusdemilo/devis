@@ -1,0 +1,65 @@
+{% extends "PLFacturationBundle::layout.html.twig" %}
+{% block link %}
+{% endblock %}
+
+{# blocks panel #}
+{% block panelcolor %}
+panel-default
+{% endblock %}
+{% block awesome %}
+fa-gear
+{% endblock %}
+{% block paneltitle %}
+Paramétrage
+{% endblock %}
+{# endblock panels #}
+
+{% block commentaire %}
+{% endblock %}
+
+{% block aidetexte %}
+{% endblock %}
+{% block principal %}
+<table class="table table-bordered table-striped table-condensed">
+  <caption><h3>Liste des familles de produits<h3></caption>
+  <thead>
+    <tr>
+      <td>Désignation</td>
+      <td>Droits</td>
+      <td>Auteur</td>
+      <td>Date création</td>
+      <td>Action</td>
+    </tr>
+  </thead>
+  <tbody>
+   {% for famille in listFamilles %}
+   <tr>
+     <td>
+       {{ famille.libFam }}
+     </td>
+     <td>
+       {{ famille.drtFam }}
+    </td>
+     <td>
+       {{ famille.user.username }}
+     </td>
+     <td>
+       {{ famille.datFam|date('d/m/Y') }}
+     </td>
+     <td>
+        <a href="{{ path('pl_facturation_famille_edit', { 'id': famille.id }) }}">modifier</a> -
+        <a class="familledelete" href="{{ path('pl_facturation_famille_delete', { 'id': famille.id }) }}">supprimer</a>
+    </td>
+  </tr>
+   {% endfor %}
+ </tbody>
+ </table>
+ <a class="btn btn-sm btn-info" href="{{path('pl_facturation_famille_create')}}"><i class="fa fa-plus"></i> Nouvelle famille</a>
+
+ {% endblock %}
+ {% block script %}
+
+ {% endblock %}
+ {% block javascripts %}{{ parent() }}
+
+ {% endblock %}

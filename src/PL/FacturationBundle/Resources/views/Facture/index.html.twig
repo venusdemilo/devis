@@ -1,0 +1,233 @@
+{% extends "PLFacturationBundle::layout.html.twig" %}
+{% block link %}
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
+{% endblock %}
+
+
+{# blocks panel #}
+{% block panelcolor %}
+panel-default
+{% endblock %}
+{% block awesome %}
+fa-dot-circle-o
+{% endblock %}
+{% block paneltitle %}
+Factures
+{% endblock %}
+{# endblock panels #}
+
+{% block commentaire %}
+{% endblock %}
+
+{% block aidetexte %}
+{% endblock %}
+{% block principal %}
+
+  <table id="tableaufacture" class="table table-striped table-condensed">
+    <caption>
+      {% if bool == 0 %}
+      <h4>Liste des factures en cours</h4><a class="btn btn-default btn-sm" href="{{path('pl_facturation_facture_index',{'bool':true})}}"><i class="fa fa-arrow-right" aria-hidden="true"></i>
+ Factures archivées</a>
+      {% else %}
+      <h4>Liste des factures archivées</h4><a class="btn btn-default btn-sm" href="{{path('pl_facturation_facture_index',{'bool':false})}}"><i class="fa fa-arrow-left" aria-hidden="true"></i>
+ Factures en cours</a>
+      {% endif %}
+    </caption>
+    <thead>
+      <tr>
+        {% if bool == 0 %}
+        <td>Statut</td>
+        {% elseif bool == 1 %}
+        <td>Archivage</td>
+        {% endif %}
+        {% if bool == 0 %}
+        <td>Validité</td>
+        {% endif %}
+        <td>Nom</td>
+        <td>Prénom</td>
+        <td>Montant €</td>
+        <td>Remise €</td>
+        <td>Paiement €</td>
+        <td>Solde €</td>
+        <td>Création</td>
+        <td>Auteur</td>
+        <td>N° facture</td>
+        <td>N° devis</td>
+
+      </tr>
+    </thead>
+    <tbody>
+      {% for facture in listFacture %}
+
+      <tr
+        data-idfacture="{{ facture.id }}"
+        data-iddevis="{{ facture.devis.id }}"
+        data-nomcar="{{ facture.carnet.nomCar }}"
+        data-prncar="{{ facture.carnet.prnCar }}"
+        data-datfac="{{ facture.datFac|date('d/m/Y') }}"
+        data-vldfac="{{ facture.vldFac }}"
+        data-darfac="{{  facture.darFac|date('d/m/Y') }}"
+        data-email="{{ facture.carnet.melCar}}"
+      >
+      {% if bool == 0 %}
+      <td>
+        {% if facture.vldFac == false %}
+          <span class="label label-primary"> Non validée</span>
+        {% elseif facture.vldFac == true and facture.rapFac == false and facture.recFac == false and facture.tieFac == false  %}
+          <a data-toggle="tooltip" href="#" title="{{ facture.obsFac }}">  <i data-idfacture="{{ facture.id }}">en cours</i></a>
+        {% elseif facture.vldFac == true and facture.rapFac == true and facture.recFac == false and facture.tieFac == false  %}
+          <a data-toggle="tooltip" href="#" title="{{ facture.obsFac }}"><span class="label label-warning"> RAPPEL</span></a>
+        {% elseif facture.vldFac == true and facture.rapFac == true and facture.recFac == true and facture.tieFac == false  %}
+        <a data-toggle="tooltip" href="#" title="{{ facture.obsFac }}"><span class="label label-danger">Recouvrement</span></a>
+        {% elseif facture.vldFac == true and facture.rapFac == false and facture.recFac == false and facture.tieFac == true  %}
+        <span class="label label-info">Envoyé CMUC</span>
+        {% else %}
+        <i style="color:red;">indeterminé</i>
+        {% endif %}
+      </td>
+      {% elseif bool == 1 %}
+      <td>{{ facture.darFac|date('d/m/Y') }}</td>
+      {% endif %}
+      {% if bool == 0 %}
+      <td>
+        {% if "now"|date('Ymd')  >  facture.dpfFac|date('Ymd') %}
+        <span class="label label-warning"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Dépassée</span>
+        {% else %}
+        {{ facture.dpfFac|date('d/m/Y')}}
+        {% endif %}
+    </td>
+    {% endif %}
+          <td>{{ facture.carnet.nomCar|upper }} {% if facture.carnet.tieCar == true %}<i style="color:red;" class="fa fa-paperclip" aria-hidden="true"></i>{% endif %}</td>
+          <td>{{ facture.carnet.prnCar|title }}</td>
+          <td>
+            {% if facture.solFac < 0 %}
+              <b style="color:blue;">  {{ facture.totFac|number_format(2,',',' ') }}</b>
+            {% elseif  "now"|date('Ymd')  >  facture.dpfFac|date('Ymd') and facture.vldFac == true %}
+              <b style="color:red;">  {{ facture.totFac|number_format(2,',',' ') }}</b>
+            {% else %}
+            {{ facture.totFac|number_format(2,',',' ') }}
+            {% endif %}
+          </td>
+          <td>{{facture.remFac|number_format(2,',',' ')}}
+          <td>{{ facture.paiFac|number_format(2,',',' ') }}</td>
+          <td>
+            {% if facture.solFac < 0 %}
+              <b style="color:blue;">{{ facture.solFac|number_format(2,',',' ') }}</b>
+            {% elseif  "now"|date('Ymd')  >  facture.dpfFac|date('Ymd') and facture.vldFac == true %}
+              <b style="color:red;">{{ facture.solFac|number_format(2,',',' ') }}</b>
+            {% else %}
+              {{ facture.solFac|number_format(2,',',' ') }}
+            {% endif %}
+          </td>
+          <td>{{ facture.datFac|date('d/m/Y') }}</td>
+          <td>{{ facture.user.username }}</td>
+
+          <td>{{ facture.datFac|date('Y-m-d') }}-{{ facture.id}}</td>
+          <td>{{ facture.devis.datDev|date('Y-m-d') }}-{{ facture.devis.id}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+    <tfoot>
+      <tr>
+        {% if bool == 0 %}
+        <td>Statut</td>
+        {% elseif bool == 1 %}
+        <td>Archivage</td>
+        {% endif %}
+        {% if bool == 0 %}
+       <td>Validité</td>
+       {% endif %}
+        <td>Nom</td>
+        <td>Prénom</td>
+        <td>Montant €</td>
+        <td>Remise €</td>
+        <td>Paiement €</td>
+        <td>Solde €</td>
+        <td>Création</td>
+        <td>Auteur</td>
+        <td>N° facture</td>
+        <td>N° devis</td>
+      </tr>
+    </tfoot>
+  </table>
+</div><!-- /.row -->
+<div class="row">
+  <div class="col-sm-8 col-sm-offset-2 text-center">
+    <div class="btn-group ">
+    {% if bool == 0 %}
+      <button class="btn btn-sm btn-default" id="reglement" href="#">
+        <i class="fa fa-eur"></i> Réglement</a>
+      <button class="btn btn-sm btn-default" id="valider" href="#">
+        <i class="fa fa-thumbs-o-up"></i> Valider</a>
+      <button class="btn btn-sm btn-default" id="archiver" href="#">
+          <i class="fa fa-arrow-down"></i> Archiver</a>
+        <button class="btn btn-sm btn-default" id="devalider">
+          <i class="fa fa-thumbs-o-down"></i> Dévalider</button>
+    {% endif %}
+      <button class="btn btn-sm btn-default" id="devispdf">
+        <i class="fa fa-file-pdf-o"></i> Devis pdf</button>
+    {% if bool == 0 %}
+      <button class="btn btn-sm btn-default" id="facturepdf">
+        <i class="fa fa-file-pdf-o"></i> Facture pdf</button>
+    {% endif %}
+    <button class="btn btn-sm btn-default" id="voirfacture">
+      <i class="fa fa-eye"></i> Voir facture </button>
+    {% if bool == 0 %}
+      <button class="btn btn-sm btn-default" id="modifierfacture">
+        <i class="fa fa-pencil"></i> Modifier facture</button>
+    {% endif %}
+    {% if bool == 1 %}
+    <button class="btn btn-sm btn-default" id="facturearchiveepdf">
+      <i class="fa fa-file-pdf-o"></i> Facture pdf</button>
+    {% endif %}
+    </div>
+  </div>
+
+  <div id="modalemail" class="modal fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title"><i class="fa fa-envelope-o" aria-hidden="true"></i> Envoi d'une facture par mail</h4>
+        </div>
+        <div class="modal-body">
+          <p id="preventemail"></p>
+
+          <div class="btn-group ">
+          <button class="btn btn-danger btn-sm" id="confirmeremail"><i class="fa fa-share"></i> Envoyer</button>
+          <button class="btn btn-info btn-sm" id="annuleremail">Annuler</button>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="modalarchiver" class="modal fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Archiver directement une facture</h4>
+        </div>
+        <div class="modal-body">
+          <p>L'archivage direct d'une facture est irréversible. Cette facture ne sera plus comptabilisable.</p>
+          <p>Souhaitez-vous continuer ?</p>
+
+          <div class="btn-group ">
+          <button class="btn btn-danger btn-sm" id="confirmerarchiver"><i class="fa fa-share"></i> Continuer</button>
+          <button class="btn btn-info btn-sm" id="annulearchiver">Annuler</button>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ {% endblock %}
+
+
+ {% block script %}
+<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+ {% endblock %}
+ {% block javascripts %}{{ parent() }}
+ $.getScript("{{ asset('bundles/plfacturation/js/factureindex.js') }}");
+ {% endblock %}

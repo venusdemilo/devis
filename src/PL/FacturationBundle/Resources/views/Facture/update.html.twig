@@ -1,0 +1,152 @@
+{% extends "PLFacturationBundle::layout.html.twig" %}
+{% block link %}
+
+{% endblock %}
+
+{# blocks panel #}
+{% block panelcolor %}
+panel-default
+{% endblock %}
+{% block awesome %}
+fa-dot-circle-o
+{% endblock %}
+{% block paneltitle %}
+Factures
+{% endblock %}
+{# endblock panels #}
+
+{% block commentaire %}
+{% endblock %}
+
+{% block aidetexte %}
+{% endblock %}
+{% block principal %}
+{% set email = facture.carnet.melCar %}
+<h4>Modification la facture n° {{ facture.datFac|date('Y-m-d') }}-{{ facture.id}}</h4>
+
+{{ form_start(form,{'attr': {'class': 'form-horizontal well well-lg'}})}}
+{{ form_errors(form) }}
+<div class="row">
+  <div class="form-group">
+    {{form_label(form.dpfFac,"Date péremption :",{label_attr:{'class':'col-sm-3 control-label'}})}}
+    <div class="col-sm-1">
+      {{form_widget(form.dpfFac,{'attr':{'class': ' input-sm'}})}}
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="form-group">
+    {{form_label(form.totFac,"Montant facture :",{label_attr:{'class':'col-sm-3 control-label'}})}}
+    <div class="col-sm-2">
+      {{form_widget(form.totFac,{'attr':{'class': 'form-control input-sm'}})}}
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="form-group">
+    {{form_label(form.remisepourcent,"% remise :",{label_attr:{'class':'col-sm-3 control-label'}})}}
+    <div class="col-sm-2">
+      {{form_widget(form.remisepourcent,{'attr':{'class': 'form-control input-sm'}})}}
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="form-group">
+    {{form_label(form.remise,"Remise Euros :",{label_attr:{'class':'col-sm-3 control-label'}})}}
+    <div class="col-sm-2">
+      {{form_widget(form.remise,{'attr':{'class': 'form-control input-sm'}})}}
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="form-group">
+    {{form_label(form.apresremise,"Après remise :",{label_attr:{'class':'col-sm-3 control-label'}})}}
+    <div class="col-sm-2">
+      {{form_widget(form.apresremise,{'attr':{'class': 'form-control input-sm'}})}}
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="form-group">
+    {{form_label(form.tieFac,"Envoi 1/3 payant :",{label_attr:{'class':'col-sm-3 control-label'}})}}
+    <div class="col-sm-1">
+      {{form_widget(form.tieFac,{'attr':{'class': 'form-control'}})}}
+    </div>
+    <div class="col-sm-1">
+      {{form_widget(form.dtrFac,{'attr':{'class': ' input-sm'}})}}
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="form-group">
+    {{form_label(form.rapFac,"Envoi rappel :",{label_attr:{'class':'col-sm-3 control-label'}})}}
+    <div class="col-sm-1">
+      {{form_widget(form.rapFac,{'attr':{'class': 'form-control' }})}}
+    </div>
+    <div class="col-sm-2">
+        {{form_widget(form.drpFac,{'attr':{'class': ' input-sm'}})}}
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="form-group">
+    {{form_label(form.recFac,"En recouvrement :",{label_attr:{'class':'col-sm-3 control-label'}})}}
+    <div class="col-sm-1">
+      {{form_widget(form.recFac,{'attr':{'class': 'form-control'}})}}
+    </div>
+    <div class="col-sm-1">
+      {{form_widget(form.drcFac,{'attr':{'class': ' input-sm'}})}}
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="form-group">
+    {{form_label(form.obsFac,"Observations :",{label_attr:{'class':'col-sm-3 control-label'}})}}
+    <div class="col-sm-4">
+      {{form_widget(form.obsFac)}}
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-8 col-sm-offset-2 text-center">
+  <div class="btn-group ">
+    {{ form_widget(form.enregistrer)}}
+    <a id="lettresimple" class="btn btn-default btn-sm" data-id="{{ id }}"><i class="fa fa-eye"></i> Lettre simple</a>
+    <a id="lettrerappel" class="btn btn-default btn-sm" data-id="{{ id }}"><i class="fa fa-eye"></i> Lettre Rappel</a>
+    <a id="facturepdf" class="btn btn-default btn-sm" data-id="{{ id }}"><i class="fa fa-file-pdf-o"></i> Facture PDF</a>
+  </div>
+</div>
+</div>
+{{ form_rest(form)}}
+{{form_end(form)}}
+<div id="modalemail" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"><i class="fa fa-envelope-o" aria-hidden="true"></i> Envoi d'un rappel par mail</h4>
+      </div>
+      <div class="modal-body">
+        <p id="preventemail"></p>
+
+        <div class="btn-group ">
+        <button class="btn btn-danger btn-sm" id="confirmeremail" data-id="{{ id }}" data-email="{{ email }}"><i class="fa fa-share"></i> Envoyer</button>
+        <button class="btn btn-info btn-sm" id="annuleremail">Annuler</button>
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+ {% endblock %}
+ {% block script %}
+ {% endblock %}
+ {% block javascripts %}{{ parent() }}
+$.getScript("{{ asset('bundles/plfacturation/js/jquery-ui-1.12.1/datepicker-fr.js') }}");
+$.getScript("{{ asset('bundles/plfacturation/js/factureupdate.js') }}");
+ {% endblock %}

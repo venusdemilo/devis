@@ -1,0 +1,63 @@
+
+{% extends "PLCoreBundle::layout.html.twig" %}
+{% block stylesheets %}
+body {
+  padding-top: 70px;
+
+ }
+{% endblock %}
+
+{% block barnav %}
+<li><a href="{{path('pl_facturation_carnet_client_index')}}"><i class="fa fa-male"></i> Clients</a></li>
+<li><a href="{{path('pl_facturation_devis_index',{'bool':false})}}"><i class="fa fa-cart-arrow-down"></i> Devis</a></li>
+{% if is_granted('ROLE_PRIVATE') or is_granted('ROLE_HN') %}
+<li></i><a href="{{path('pl_facturation_facture_index',{'bool':false})}}"><i class="fa fa-dot-circle-o"></i> Factures</a></li>
+<li></i><a href="{{ path('pl_facturation_compte_show',{'typCom':700}) }}"><i class="fa fa-credit-card"></i> Comptes</a></li>
+<li class="dropdown">
+  <a data-toggle="dropdown" href="#">
+    <i class="fa fa-gear"></i> Paramétrages
+    <b class="caret"></b>
+  </a>
+  <ul class="dropdown-menu">
+    <li><a href="{{ path('pl_facturation_famille_index')}}">Familles de produits</a></li>
+    <li><a href="{{ path('pl_facturation_produit_index')}}">Produits</a></li>
+    <li><a href="{{ path('pl_facturation_carnet_index')}}">Carnet</a></li>
+  </ul>
+</li><!-- /.dropdown -->
+{% endif %}
+<li id="alertinfo"></li>
+
+
+{% endblock %}
+
+{% block main %}
+<div class="container-fluid">
+
+
+  <div class="col-sm-2">
+    <div class="panel {% block panelcolor %}panel-info{% endblock %}">
+      <div class="panel-heading">
+        <h3><i class="fa {% block awesome %}fa-calculator{% endblock %}" aria-hidden="true"></i> {% block paneltitle %}Bienvenue{% endblock %}</h3>
+      </div>
+      {% if is_granted('ROLE_PRIVATE') or is_granted('ROLE_HN') %}
+      <div class="panel-body">
+        {{ render(controller("PLFacturationBundle:Compteur:index")) }}
+      </div>
+      {% endif %}
+    </div>
+
+      {% block commentaire %}
+      {% endblock %}
+
+  </div><!-- /.col-sm-2 -->
+
+  <section class="col-sm-10">
+  {% block principal %}
+  {% endblock %}
+  </section>
+</div><!-- /.container fluid-->
+{% endblock %}{# /block main #}
+
+{% block javascripts %}
+$.getScript("{{ asset('bundles/plfacturation/js/layout.js') }}");
+{% endblock %}

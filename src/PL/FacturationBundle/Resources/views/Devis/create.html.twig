@@ -1,0 +1,96 @@
+{% extends "PLFacturationBundle::layout.html.twig" %}
+{% block stylesheets %}
+{{ parent()}}
+#tableaudevis {
+  position:fixed;
+  right:70px;
+}
+{% endblock %}
+{# blocks panel #}
+{% block panelcolor %}
+panel-default
+{% endblock %}
+{% block awesome %}
+fa-cart-arrow-down
+{% endblock %}
+{% block paneltitle %}
+Devis
+{% endblock %}
+{# endblock panels #}
+{% block principal %}
+
+<section class="col-sm-6">
+  <header class="page-header">
+  <h4>Cliquez sur les items pour dérouler la liste</h4>
+</header>
+ <div class="panel-group" data-carnetid="{{ idCar }}" id="accordeon">
+{% for famille in listFamilles %}
+  <div class="panel panel-default">
+     <div class="panel-heading">
+         <h3 class="panel-title">
+              <a href="#item{{ famille.id }}" data-toggle="collapse" data-parent="#accordeon">
+              {{ famille.libFam }}
+              </a>
+          </h3>
+      </div>
+      <div id="item{{ famille.id }}" class="panel-collapse collapse">
+        <div class="panel-body">
+          <form class="form-horizontal">
+            <!-- <div class="col-sm-6"> -->
+              <div class="form-group">
+                {% for produit in famille.produits %}
+
+                  <div class="checkbox">
+                    <label for="{{ produit.id }}">
+                        <input name="checkboxes" id="{{ produit.id}}" value="{{ produit.ttcProd }}" data-refprod="{{produit.refProd}}" type="checkbox">
+                        {{ produit.libProd }} - ({{ produit.refProd}})
+                    </label>
+                  </div>
+
+                {% endfor %}
+              </div>
+            <!-- </div> -->
+          </form>
+          </div><!-- /.panel-body -->
+        </div><!-- /.panel-collapse collapse -->
+      </div><!-- /.panel panel-default -->
+{% endfor %}
+
+</div><!-- /#accordeon -->
+</section>
+<section id="tableaudevis" class="col-sm-4">
+ <table class="table table-bordered table-striped table-condensed" id="tableau">
+     <caption>
+      <h4> DEVIS - {{ nomCar~" "~prnCar }}</h4>
+     </caption>
+     <thead>
+       <tr>
+         <td>Code</td>
+         <td>Prix</td>
+         <td>Quantité</td>
+         <td>Total</td>
+
+       </tr>
+     </thead>
+     <tbody id="devis">
+     </tbody>
+   </table>
+
+ <div class="panel-footer">
+   <div class="row">
+     <div  id="total">
+       <h3 class="panel-title text-left"></h3>
+     </div>
+     <div class="btn-group text-center">
+       <a id="datastoker" data-drtfam="{{ drtFam }}" class="btn btn-sm btn-info" href="#">Valider ce devis</a>
+       <a id="raz" class="btn btn-sm btn-warning" href="#">R à Z</a>
+     </div>
+  </div>
+ </div>
+</section>
+
+ {% endblock %}
+
+{% block javascripts %}
+$.getScript("{{ asset('bundles/plfacturation/js/deviscreate.js') }}");
+{% endblock %}

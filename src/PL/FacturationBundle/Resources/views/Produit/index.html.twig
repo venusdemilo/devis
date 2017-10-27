@@ -1,0 +1,108 @@
+{% extends "PLFacturationBundle::layout.html.twig" %}
+{% block link %}
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
+{% endblock %}
+
+
+{# blocks panel #}
+{% block panelcolor %}
+panel-default
+{% endblock %}
+{% block awesome %}
+fa-gear
+{% endblock %}
+{% block paneltitle %}
+Paramétrage
+{% endblock %}
+{# endblock panels #}
+
+{% block commentaire %}
+{% for message in app.session.flashbag.get('info') %}
+<div class="label label-info">
+   {{ message }}
+</div>
+{% endfor %}
+
+{% for message in app.session.flashbag.get('success') %}
+<div class="label label-success">
+ {{ message }}
+</div>
+{% endfor %}
+
+{% for message in app.session.flashbag.get('warning') %}
+<div class="label label-danger">
+ {{ message }}
+</div>
+{% endfor %}
+{% endblock %}
+
+{% block aidetexte %}
+{% endblock %}
+{% block principal %}
+<table class="table table-striped table-condensed" id="tableauproduit">
+  <caption><h3>Liste des produits<h3></caption>
+  <thead>
+    <tr>
+      <td>Code</td>
+      <td>Désignation</td>
+      <td>Information</td>
+      <td>Famille</td>
+      <td>Auteur</td>
+
+
+      <td>Action</td>
+    </tr>
+  </thead>
+  <tbody>
+ {% for produit in listProduits %}
+ <tr>
+   <td>{{ produit.refProd }}</td>
+   <td>{{ produit.libProd }}</td>
+   <td>{{ produit.infoproduit.lbcInf }}</td>
+   <td>
+     {% if produit.famille.libFam is defined %}
+      {{ produit.famille.libFam }}
+    {% else %}
+      <i>pas de famille attribuée</i>
+    {% endif %}
+    </td>
+    <td>{{ produit.user.username }}</td>
+    <td>
+    <a href="{{ path('pl_facturation_produit_edit', { 'id': produit.id })}}">modifier</a>
+    - <a href="{{ path('pl_facturation_produit_delete',{ 'id': produit.id } )}}">supprimer</a>
+    </td>
+  </tr>
+ {% endfor %}
+ <tfoot>
+   <tr>
+     <td>Code</td>
+     <td>Désignation</td>
+     <td>Information</td>
+     <td>Famille</td>
+     <td>Auteur</td>
+
+
+     <td>Action</td>
+   </tr>
+ </tfoot>
+</table>
+ <a class="btn btn-info btn-sm" href="{{ path('pl_facturation_produit_new')}}"><i class="fa fa-plus"></i> Nouveau produit</a>
+
+
+
+
+ {% endblock %}
+
+ {% block script %}
+  <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+ {% endblock %}
+ {% block javascripts %}{{ parent() }}
+ $('#tableauproduit').DataTable({
+        "scrollY":        '400px',
+        "scrollCollapse": true,
+        "paging":         false,
+        "scrollx": false,
+        "info":false,
+        select: true
+ });
+ {% endblock %}

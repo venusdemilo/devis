@@ -1,0 +1,54 @@
+<?php
+
+namespace PL\FacturationBundle\Form;
+
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+
+class ProduitType extends AbstractType
+{
+    /**
+     * @param FormBuilderInterface $builder
+     * @param array $options
+     */
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $builder
+        ->add('famille', 'entity', array(
+          'class' => "PLFacturationBundle:Famille",
+          'property' => 'libFam',
+          'multiple' => false,
+          'required' => false,
+          'mapped' => false,
+          'empty_value' => 'Choisir une famille'
+        ))
+            ->add('refProd')
+            ->add('rffProd')
+            ->add('libProd')
+            ->add('ttcProd')
+            ->add('vntProd')
+            ->add('tvaProd')
+            ->add('marProd')
+            ->add('Action','submit')
+        ;
+    }
+
+    /**
+     * @param OptionsResolverInterface $resolver
+     */
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    {
+        $resolver->setDefaults(array(
+            'data_class' => 'PL\FacturationBundle\Entity\Produit'
+        ));
+    }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return 'pl_facturationbundle_produit';
+    }
+}

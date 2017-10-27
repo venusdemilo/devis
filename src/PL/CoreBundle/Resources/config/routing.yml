@@ -1,0 +1,3 @@
+pl_core_homepage:
+    path:     /
+    defaults: { _controller: PLCoreBundle:Default:index }

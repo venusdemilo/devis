@@ -1,0 +1,162 @@
+pl_facturation_famille_index:
+    path:     /admin/famille
+    defaults: { _controller: PLFacturationBundle:Famille:index }
+pl_facturation_famille_create:
+    path:     /admin/famille/create
+    defaults: { _controller: PLFacturationBundle:Famille:create }
+pl_facturation_famille_edit:
+    path:     /admin/famille/{id}/edit
+    defaults: { _controller: PLFacturationBundle:Famille:edit }
+pl_facturation_famille_delete:
+    path:     admin/famille/{id}/delete
+    defaults: { _controller: PLFacturationBundle:Famille:familleDelete }
+
+
+
+pl_facturation_produit_index:
+    path:     /admin/produit
+    defaults: { _controller: PLFacturationBundle:Produit:index }
+pl_facturation_produit_new:
+    path:     /admin/produit/new
+    defaults: { _controller: PLFacturationBundle:Produit:new }
+pl_facturation_produit_edit:
+    path:     /admin/produit/{id}/edit
+    defaults: { _controller: PLFacturationBundle:Produit:edit }
+pl_facturation_produit_delete:
+    path:     admin/produit/{id}/delete
+    defaults: { _controller: PLFacturationBundle:Produit:delete }
+
+pl_facturation_carnet_index:
+    path:     /carnet
+    defaults: { _controller: PLFacturationBundle:Carnet:index }
+pl_facturation_carnet_new:
+    path:     /carnet/new
+    options:
+        expose: true
+    defaults: { _controller: PLFacturationBundle:Carnet:new }
+pl_facturation_carnet_update:
+    path:     /carnet/{id}/update
+    defaults: { _controller: PLFacturationBundle:Carnet:update }
+    options:
+        expose: true
+pl_facturation_carnet_delete:
+    path:     /carnet/{id}/delete
+    defaults: { _controller: PLFacturationBundle:Carnet:delete }
+    options:
+        expose: true
+pl_facturation_carnet_client_index:
+    path:     /carnet/client
+    defaults: { _controller: PLFacturationBundle:Carnet:index }
+    options:
+        expose: true
+
+pl_facturation_devis_new:
+    path:     /devis/{id}/new
+    defaults: { _controller: PLFacturationBundle:Devis:new }
+    options:
+        expose: true
+pl_facturation_devis_index:
+    path:     /devis
+    defaults: { _controller: PLFacturationBundle:Devis:index }
+    options:
+        expose: true
+pl_facturation_devis_record:
+    path:     /devis/record
+    defaults: { _controller: PLFacturationBundle:Devis:devisRecord }
+    options:
+        expose: true
+
+pl_facturation_devis_delete:
+    path:     /devis/{id}/delete
+    defaults: { _controller: PLFacturationBundle:Devis:delete }
+    options:
+        expose: true
+
+pl_facturation_devis_pdf:
+    path:     /devis/{id}/pdf
+    defaults: { _controller: PLFacturationBundle:Devis:devisPdf }
+    options:
+        expose: true
+pl_facturation_facacquittee_pdf:
+    path:     /devis/{id}/facacquitteepdf
+    defaults: { _controller: PLFacturationBundle:Devis:facacquitteePdf }
+    options:
+        expose: true
+pl_facturation_devis_to_facture:
+    path:     /devistofacture/{id}
+    defaults: { _controller: PLFacturationBundle:Devis:devisToFacture }
+    options:
+        expose: true
+
+pl_facturation_produit_devis_show:
+    path : /produitdevis/{id}/show
+    defaults: { _controller: PLFacturationBundle:ProduitDevis:show }
+    options:
+        expose: true
+pl_facturation_produit_devis_update:
+    path : /produitdevis/{id}/update
+    defaults: { _controller: PLFacturationBundle:ProduitDevis:update }
+    options:
+        expose: true
+pl_facturation_produit_devis_record:
+    path : /produitdevis/record
+    defaults: { _controller: PLFacturationBundle:ProduitDevis:record }
+    options:
+        expose: true
+
+pl_facturation_facture_index:
+    path:     /facture
+    defaults: { _controller: PLFacturationBundle:Facture:index }
+    options:
+        expose: true
+pl_facturation_facture_update:
+    path:     /facture/{id}/update
+    defaults: { _controller: PLFacturationBundle:Facture:update }
+    options:
+        expose: true
+pl_facturation_facture_encours_pdf:
+    path:     /facture/encours/{id}/pdf
+    defaults: { _controller: PLFacturationBundle:Facture:factureEnCoursPdf }
+    options:
+        expose: true
+pl_facturation_facture_archivee_pdf:
+    path:     /facture/archivee/{id}/pdf
+    defaults: { _controller: PLFacturationBundle:Facture:factureArchiveePdf }
+    options:
+        expose: true
+pl_facturation_facture_lettre-rappel_pdf:
+    path:     facture/lettrerappel/{id}/pdf
+    defaults: { _controller: PLFacturationBundle:Facture:lettreRappelPdf }
+    options:
+        expose: true
+pl_facturation_facture_archive_direct:
+    path:     facture/archiver/{id}
+    defaults: { _controller: PLFacturationBundle:Facture:archivageDirect }
+    options:
+        expose: true
+
+pl_facturation_mouvement_valid_facture:
+    path:     /facture/{idFacture}/validate
+    defaults: { _controller: PLFacturationBundle:Mouvement:mouvementValidFacture }
+    options:
+        expose: true
+pl_facturation_mouvement_unvalid_facture:
+    path:     /facture/{idFacture}/unvalidate
+    defaults: { _controller: PLFacturationBundle:Mouvement:mouvementUnvalidFacture }
+    options:
+        expose: true
+pl_facturation_mouvement_reglement_facture:
+    path:     /facture/{idFacture}/reglement
+    defaults: { _controller: PLFacturationBundle:Mouvement:mouvementReglementFacture }
+    options:
+        expose: true
+
+pl_facturation_compte_show:
+    path:     /compte/show
+    defaults: { _controller: PLFacturationBundle:Compte:show }
+    options:
+        expose: true
+
+pl_facturation_test:
+    path: /email
+    defaults: { _controller: PLFacturationBundle:Test:email }

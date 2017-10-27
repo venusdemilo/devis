@@ -1,0 +1,94 @@
+{% extends "PLFacturationBundle::layout.html.twig" %}
+{% block link %}
+{% endblock %}
+
+{# blocks panel #}
+{% block panelcolor %}
+panel-default
+{% endblock %}
+{% block awesome %}
+fa-credit-card
+{% endblock %}
+{% block paneltitle %}
+Comptes
+{% endblock %}
+{# endblock panels #}
+
+{% block commentaire %}
+{% endblock %}
+
+{% block aidetexte %}
+{% endblock %}
+{% block principal %}
+{% set credit = 0 %}
+{% set debit = 0 %}
+{% set solde = 0 %}
+{% set i = 1 %}
+<form action="{{ path('pl_facturation_compte_show')}}" name="formfilter" method="get" class="form-horizontal">
+  <blockquote>
+    La recherche se fait jusquà la date finale moins un jour, pour les actes "public" en connexion <i>public</i> et pour les actes "hn" en connexion <i>hn</i>.
+  </blockquote>
+  <label for="start">Du :</label>
+  <input type="datetime" id="start" name="start" placeholder="{{ start }}">
+  <label for="end">Au :</label>
+  <input type="datetime" id="end" name="end" placeholder="{{ end }}">
+  <input type="submit" name="envoi" value="Envoyer">
+</form>
+<table class="table">
+  <caption>
+    <h4>Compte n° {{typCom }} (ventes) du {{ start|date('d/m/Y') }} au {{ end|date('d/m/Y') }}</h4>
+  </caption>
+  <thead>
+    <tr>
+      <td>n° ligne</td>
+      <td>Date</td>
+      <td>Nom</td>
+      <td>Prénom</td>
+      <td>Ecriture</td>
+      <td>Type compte</td>
+      <td>Droits facture</td>
+      <td>Débit</td>
+      <td>Crédit</td>
+      <td>Solde</td>
+    </tr>
+  </thead>
+{% for mouvement in listMouvement %}
+{% set solde = solde + mouvement.creMou - mouvement.debMou %}
+
+<tr>
+  <td>{{ i }}</td>
+  <td>{{ mouvement.ecriture.datEcr|date('d/m/Y')}}</td>
+  <td></td>
+  <td></td>
+  <td><i>{{ mouvement.ecriture.libEcr }}</i></td>
+  <td>{{ mouvement.compte.typCom }}</td>
+  <td>{{ mouvement.ecriture.facture.drtFac }}</td>
+  <td>
+    {% if mouvement.debMou > 0  %}
+      {{ mouvement.debMou|number_format(2,',',' ')}}
+    {% endif %}
+</td>
+  <td>
+    {% if mouvement.creMou > 0  %}
+      {{ mouvement.creMou|number_format(2,',',' ') }}
+    {% endif %}
+</td>
+
+  <td>{{ solde|number_format(2,',',' ') }}</td>
+
+</tr>
+{% set i = i+1 %}
+{% endfor %}
+<tr><td></td><td></td><td>Nom</td>
+<td>Prénom</td><td></td><td></td><td></td><td></td><td><b style="text-align:left;">Solde :</b></td><td>{% if solde < 0 %}<b style="color:red;">{{solde}} €</b>{% elseif  solde >= 0 %}<b style="color:blue;">{{solde}} €</b>{% endif %}</td>
+</table>
+{% endblock %}
+
+
+{% block script %}
+{% endblock %}
+{% block javascripts %}{{ parent() }}
+$('#start').datepicker({ dateFormat: 'yy-mm-dd' });
+$('#end').datepicker({ dateFormat: 'yy-mm-dd' });
+{# $.getScript("{{ asset('bundles/plfacturation/js/factureindex.js') }}"); #}
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "PLFacturationBundle::layout.html.twig" %}
+
+
+{% block link %}
+{% endblock %}
+
+{# blocks panel #}
+{% block panelcolor %}
+panel-default
+{% endblock %}
+{% block awesome %}
+fa-male
+{% endblock %}
+{% block paneltitle %}
+Clients
+{% endblock %}
+{# endblock panels #}
+
+{% block commentaire %}
+{% endblock %}
+
+{% block aidetexte %}
+{% endblock %}
+
+{% block principal %}
+<div class="col-sm-6">
+<h3>Formulaire de modification d'un client</h3>
+
+{{ include("PLFacturationBundle:Carnet:new.html.twig") }}
+</div>
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}
+{% block javascripts %}{{ parent() }}
+{% endblock %}

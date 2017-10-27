@@ -1,0 +1,183 @@
+<page format="A4" backbottom="35mm" >
+  <page_footer>
+
+    <div id="blockfooter">
+
+    Membre d’une association de gestion agréée, le règlement des honoraires par chèque est accepté.<br>
+    <br>
+    Le Dr LAPEYRIE ne pratique pas le tiers payant  avec les organismes de complémentaire santé (mutuelles). Les démarches de remboursement sont réalisées par le patient avec la feuille de soins remise contre paiement.
+
+    </div><!-- /#footer -->
+  </page_footer>
+
+
+  <style>
+      #blocksocieteutilisateur {
+        width:105mm;
+      }
+      #utilisateur {
+        color: #79BBFC;
+        font-weight:bold;
+      }
+      #blockdate {
+        text-align: right;
+        padding-top: 10mm;
+        padding-right: 10mm;
+      }
+
+      #blockclient {
+        padding-left:105mm;
+        padding-top: 10mm;
+      }
+
+      #barcode {
+        padding-top: 10mm;
+        text-align:right;
+      }
+
+      #headertab td {
+        background-color: #79BBFC;
+        padding-left: 2mm;
+        padding-right: 2mm;
+        padding-top:1mm;
+        padding-bottom:1mm;
+        text-align: center;
+        border-bottom: solid 1px black;
+      }
+      #siretsociete{
+        margin-top:4mm;
+        font-size:2.5mm;
+      }
+      #apesociete{
+        font-size:2.5mm;
+      }
+
+      #logo{
+        margin-top: -5mm;
+        margin-right: 15mm;
+      }
+
+      #blocktitredocument{
+        font-weight:bold;
+      }
+      #signature{
+        width:100%;
+        margin-top:10mm;
+      }
+
+      #blockfooter{
+        padding:2mm;
+        font-size:2mm;
+        text-align:center;
+      }
+      td.libellesignature{
+        vertical-align:bottom;
+        font-size: 3mm;
+        text-align:center;
+      }
+
+      td.casevide {
+        border : solid 1px black;
+        height : 20mm;
+        width:50mm;
+      }
+
+      td.total{
+
+        background-color: #F9FCBE;
+        padding-right:2mm;
+        padding-left:2mm;
+        font-weight:bold;
+        text-align:right;
+      }
+
+
+      .societe{
+        text-align:center;
+      }
+      .vide{
+        width:10mm;
+      }
+
+  </style>
+
+
+
+    {% set idCar = facture.carnet.id %}
+    {% set idFac = facture.id %}
+    {% set datFac = facture.datFac %}
+    {% set rueCar = facture.carnet.rueCar|split('*') %}
+    {% set prnCar = facture.carnet.prnCar %}
+    {% set nomCar = facture.carnet.nomCar %}
+    {% set cdeCar = facture.carnet.cdeCar %}
+    {% set vilCar = facture.carnet.vilCar %}
+    {% set solFac = facture.solFac %}
+    {% set totFac = facture.totFac %}
+    {% set username = facture.user.username %}
+
+
+
+<img id="logo" src="http://www.silvereco.fr/wp-content/logo-chu-nimes.png" height="150" align="right">
+
+<div id="blocksocieteutilisateur">
+
+<div id="utilisateur" class="societe">
+  Dr Philippe LAPEYRIE
+</div>
+<div id="adressesociete" class="societe">
+  Service de Chirurgie Orale<br>
+  CHU Carémeau - Place du Professeur Debré<br>
+</div>
+<div id="villesociete" class="societe">30000 NIMES</div>
+<div id="telsociete" class="societe">Tel : 04.66.68.43.33</div>
+<div id="faxsesociete" class="societe">Fax : 04.66.68.33.12</div>
+<div id="emailutilisateur" class="societe">e-mail : <span class="email">philippe.lapeyrie@chu-nimes.fr</span></div>
+<div id="siretsociete" class="societe">N° Siret : 34909466400068 </div>
+<div id="apesociete" class="societe">Code A.P.E. : 8623</div>
+
+</div><!-- \#blocksocieteutilisateur -->
+
+<div id="blockdate">
+Nîmes le {{"now"|date('d/m/Y')}}</div><!-- /#blockdate -->
+<div id="blockclient">
+<div id="nomclient" class="client">
+ <b>{{ nomCar }} {{ prnCar }}</b>
+</div>
+<div id="adresseclient" class="client">
+  {{ rueCar[0]~' '~rueCar[1]~' '~rueCar[2] }}<br>
+  {{ rueCar[3] }}
+</div>
+<div id="villeclient" class="client">
+  {{ cdeCar~" "~vilCar}}
+</div>
+</div><!-- \#blockclient -->
+<div style="padding-left:10mm;padding-top:10mm;">
+{% block objet %}
+<p><b>Objet :</b> relance note d'honoraires n° {{ datFac|date('Y-m-d') }}-{{idFac}}</p>
+{% endblock %}
+</div>
+<div id="blocktitredocument" style="text-align:center; padding-top:5mm; padding-bottom:5mm;">
+{% block title %}
+LETTRE DE RELANCE
+{% endblock %}
+</div>
+<div style="font-size:4mm; padding-right:10mm; padding-left:10mm;">
+{% block content %}
+
+<p>Madame, Monsieur,<br><br>Après vérification comptable, nous vous informons que la note d’honoraire
+n° {{ datFac|date('Y-m-d') }}-{{idFac}} établie le {{datFac|date('d/m/Y')}} n’a pas été validée par un règlement. Le montant restant dû est de {{ solFac|number_format(2,',',' ') }} €.</p>
+<p>A défaut de paiement sous 7 jours nous serons contraints de placer votre
+dossier en contentieux sans autre préavis, ce qui vous exposerais à des frais supplémentaires
+<u>non remboursés par l’assurance maladie</u>.</p>
+<p>Le réglement se fait par chèque bancaire rédigé à l'ordre du Dr Lapeyrie ou en espèces
+à l'accueil du service de chirurgie orale. Précisez le numéro de facture au dos du chèque. Attention, nous ne prenons pas les cartes bancaires.</p>
+<p><i>Nous vous rappelons que les actes médicaux sont dûs immédiatement après avoir été effectués. Vous êtes
+ engagé au paiement des honoraires par la signature du devis et à ce titre recouvrable par voie d'huissier.</i></p>
+<p>Restant persuadé que cet oubli sera corrigé rapidement, je vous prie de croire,
+Madame, Monsieur, en l’assurance de mes salutations distinguées.</p>
+{% endblock %}
+{% block signature%}
+<p style="text-align:center;">Dr Ph. Lapeyrie<br><span style="font-size:2mm">courrier relu et signé par voie electronique</span></p>
+{% endblock %}
+</div>
+</page>

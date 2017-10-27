@@ -1,0 +1,18 @@
+services:
+#    pl_facturation.example:
+#        class: PL\FacturationBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
+    pl_facturation.devissave:
+        class: PL\FacturationBundle\Devissave\PLDevissave
+        arguments: [@doctrine.orm.entity_manager]
+
+    pl_facturation.jsonvalidate:
+        class: PL\FacturationBundle\Jsonvalidate\PLJsonvalidate
+
+    pl_facturation.mouvementfacture:
+        class: PL\FacturationBundle\Mouvementfacture\PLMouvementfacture
+        arguments: [@doctrine.orm.entity_manager]
+
+#    pl_facturation.mouvementunvalidfacture:
+#        class: PL\FacturationBundle\Mouvementvalidfacture\PLMouvementvalidfacture
+#        arguments: [@doctrine.orm.entity_manager,%compte_client%,%compte_vente%,%libelle_ecriture_unvalid_facture%]

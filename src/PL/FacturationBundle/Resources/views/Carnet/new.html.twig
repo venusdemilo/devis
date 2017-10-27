@@ -1,0 +1,142 @@
+
+  {{ form_start(form,{'attr': {'class': 'form-horizontal well well-lg'}})}}
+  {{ form_errors(form) }}
+
+<div class="row">
+
+  <div class="form-group">
+
+      {{ form_label(form.nomCar,"Nom :",{label_attr:{'class':'col-sm-3 control-label'}})}}
+      {{ form_errors(form.nomCar) }}
+    <div class="col-sm-4">
+      {{ form_widget(form.nomCar,{'attr': {'class': 'form-control input-sm'}})}}
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="form-group">
+        {{ form_label(form.prnCar,"Prénom :",{label_attr:{'class':'col-sm-3 control-label'}})}}
+        {{ form_errors(form.prnCar) }}
+    <div class="col-sm-4">
+      {{ form_widget(form.prnCar,{'attr': {'class': 'form-control input-sm'}})}}
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="row">
+    <div class="form-group">
+
+        {{ form_label(form.melCar,"@dress :",{label_attr:{'class':'col-sm-3 control-label'}})}}
+        {{ form_errors(form.melCar) }}
+
+      <div class="col-sm-6">
+        {{ form_widget(form.melCar,{'attr':{'class':'form-control input-sm'}})}}
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+
+  {{ form_label(form.numerovoie,"N° voie :",{label_attr:{'class':'col-sm-3 control-label'}})}}
+      {{ form_errors(form.numerovoie) }}
+
+    <div class="col-sm-2">
+      {{ form_widget(form.numerovoie,{'attr': {'class':'form-control input-sm'}})}}
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="form-group">
+
+      {{ form_label(form.typevoie,"Type voie :",{label_attr:{'class':'col-sm-3 control-label'}})}}
+      {{ form_errors(form.typevoie) }}
+
+    <div class="col-sm-3">
+      {{ form_widget(form.typevoie,{'attr': {'class':'form-control input-sm'}})}}
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="form-group">
+
+      {{ form_label(form.nomvoie,"Nom voie :",{label_attr:{'class':'col-sm-3 control-label'}})}}
+      {{ form_errors(form.nomvoie) }}
+
+    <div class="col-sm-6">
+      {{ form_widget(form.nomvoie,{'attr': {'class':'form-control input-sm'}})}}
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="form-group">
+
+      {{ form_label(form.complement,"Complément :",{label_attr:{'class':'col-sm-3 control-label'}})}}
+      {{ form_errors(form.complement) }}
+
+    <div class="col-sm-6">
+      {{ form_widget(form.complement,{'attr': {'class':'form-control input-sm'}})}}
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="form-group">
+
+        {{ form_label(form.cdeCar,"Code postal :",{label_attr:{'class':'col-sm-3 control-label'}})}}
+        {{ form_errors(form.cdeCar) }}
+
+    <div class="col-sm-2">
+      {{ form_widget(form.cdeCar,{'attr': {'class':'form-control input-sm'}})}}
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="form-group">
+
+      {{ form_label(form.vilCar,"Ville :",{label_attr:{'class':'col-sm-3 control-label'}})}}
+      {{ form_errors(form.vilCar) }}
+    <div class="col-sm-6">
+      {{ form_widget(form.vilCar,{'attr': {'class':'form-control input-sm'}})}}
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="form-group">
+
+      {{ form_label(form.tel1,"Tél",{label_attr:{'class':'col-sm-1 control-label'}})}}
+      {{ form_errors(form.tel1) }}
+
+    <div class="col-sm-2">
+      {{ form_widget(form.tel1,{'attr':{'class':'form-control input-sm'}})}}
+    </div>
+    <div class="col-sm-2">
+      {{ form_widget(form.tel2,{'attr':{ 'class':'form-control input-sm'}})}}
+    </div>
+    <div class="col-sm-2">
+      {{ form_widget(form.tel3,{'attr':{'class':'form-control input-sm'}})}}
+    </div>
+    <div class="col-sm-2">
+      {{ form_widget(form.tel4,{'attr':{'class':'form-control input-sm'}})}}
+    </div>
+    <div class="col-sm-2">
+      {{ form_widget(form.tel5,{'attr':{'class':'form-control input-sm'}})}}
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="form-group">
+
+      {{ form_label(form.tieCar,"1/3 payant :",{label_attr:{'class':'col-sm-3 control-label'}})}}
+      {{ form_errors(form.vilCar) }}
+    <div class="col-sm-1">
+      {{ form_widget(form.tieCar,{'attr': {'class':'form-control'}})}}
+    </div>
+  </div>
+</div>
+
+<div class="btn btn-group">
+{{ form_widget(form.Enregistrer,{'attr': {'class': 'btn btn-info'}})}}
+<a class="btn btn-primary" href="{{path('pl_facturation_carnet_index')}}">Annuler</a>
+</div>
+{{ form_rest(form)}}
+{{ form_end(form)}}

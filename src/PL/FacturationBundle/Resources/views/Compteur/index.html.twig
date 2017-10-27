@@ -1,0 +1,9 @@
+<div id="dashboard" class="row">
+  <ul class="list-group">
+    <a href="{{path('pl_facturation_carnet_client_index')}}" class="list-group-item"><span class="badge">{{ compteur.carCom }}</span> clients</a>
+    <a href="{{path('pl_facturation_devis_index',{'bool':false})}}" class="list-group-item"><span class="badge">{{ compteur.decCom }}</span> devis en cours</a>
+    <a href="{{path('pl_facturation_devis_index',{'bool':true})}}" class="list-group-item"><span class="badge">{{ compteur.darCom }}</span> devis archivés</a>
+    <a href="{{path('pl_facturation_facture_index',{'bool':false})}}" class="list-group-item"><span class="badge">{{ compteur.fecCom }}</span> factures en cours</a>
+    <a href="{{path('pl_facturation_facture_index',{'bool':true})}}" class="list-group-item"><span class="badge">{{ compteur.farCom }}</span> factures archivées</a>
+  </ul>
+</div>

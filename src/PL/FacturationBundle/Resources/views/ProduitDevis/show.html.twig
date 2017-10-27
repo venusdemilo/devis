@@ -1,0 +1,108 @@
+{% extends "PLFacturationBundle::layout.html.twig" %}
+{# blocks panel #}
+{% block panelcolor %}
+panel-default
+{% endblock %}
+{% block awesome %}
+fa-cart-arrow-down
+{% endblock %}
+{% block paneltitle %}
+Devis
+{% endblock %}
+{# endblock panels #}
+{% block commentaire %}
+
+{% endblock %}
+{% block aidetexte %}
+{% endblock %}
+
+{% block principal %}
+  {% set nomCar = ''%}
+  {% set prnCar = ''%}
+  {% set datDev = ''%}
+  {% set idDev = ''%}
+  {% set user = ''%}
+  {% set darDev ='' %}
+
+  {% set soustotal = 0 %}
+  {% set total = 0 %}
+  {% for pd in listPds %}
+    {% set nomCar = pd.devis.carnet.nomCar %}
+    {% set prnCar = pd.devis.carnet.prnCar %}
+    {% set datDev = pd.devis.datDev %}
+    {% set idDev = pd.devis.id %}
+    {% set user = pd.devis.user.username %}
+    {% set darDev = pd.devis.darDev %}
+    {% set id = pd.id %}
+  {% endfor %}
+
+<h4><i class="fa fa-male"></i> {{ nomCar~' '~prnCar}}</h4>
+
+<table class="table table-striped table-condensed" id="tableauproduitdevis" data-iddev="{{ idDev }}">
+  <caption>
+    <h4>
+      Devis n° {{ datDev|date('Y-m-d') }}-{{idDev}} du {{ datDev|date('d/m/Y')}}, rédigé par {{ user }}{% if darDev != null %}, archivé le {{ darDev|date('d/m/Y') }} par ... {% endif %}.
+    </h4>
+  </caption>
+  <thead>
+    <tr>
+      <td><b>Réf.</b></td><td><b>Libellé</b></td><td><b>Observations</b></td><td><b>P.U.</b></td><td><b>Q.</b></td><td><b>Total</b></td>
+    </tr>
+  </thead>
+<tbody>
+{% for pd in listPds %}
+{% set soustotal = pd.produit.ttcProd * pd.quaPrD  %}
+<tr>
+  <td>{{ pd.produit.refProd }}</td>
+  <td>{{ pd.produit.libProd|truncate(90,true) }}</td>
+  <td>
+    {% block observation %}
+    {{ pd.obsPrD }}
+    {% endblock %}
+
+  </td>
+  <td>{{ pd.produit.ttcProd|number_format(2,',',' ') }}</td>
+  <td>{{ pd.quaPrD }}</td>
+  <td>{{ soustotal|number_format(2,',',' ') }}</td>
+</tr>
+{% set total = total + soustotal %}
+{% set soustotal = 0 %}
+{% endfor %}
+<tr>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td><b>Total = {{ total|number_format(2,',',' ') }} Euros</b></td>
+</tr>
+</tbody>
+<table>
+{% block button2 %}
+  <div class="row">
+    <div class="col-sm-8 col-sm-offset-2 text-center">
+      <div class="btn-group ">
+        <a class="btn btn-info btn-sm" href="{{path('pl_facturation_devis_index',{'bool':false})}}"><i class="fa fa-arrow-left" aria-hidden="true"></i>
+   Devis en cours</a>
+   {% block button %}
+   <a class="btn btn-warning btn-sm" href="{{ path('pl_facturation_produit_devis_update',{'id':idDev})}}"><i class="fa fa-pencil"></i> Ajouter observations</a>
+    {% endblock %}
+      <a href="{{ path('pl_facturation_devis_pdf',{
+        'id':idDev,
+        'prncar':prnCar,
+        'nomcar':nomCar,
+        'datdev':datDev
+        })}}" class="btn btn-default btn-sm btn-success"><i class="fa fa-file-pdf-o"></i> Voir PDF </a>
+    </div>
+  </div>
+</div>
+{% endblock %}
+{% endblock %}
+
+
+
+
+{% block script %}
+{% endblock %}
+{% block javascripts %}{{ parent() }}
+{% endblock %}
