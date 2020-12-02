@@ -26,12 +26,11 @@
       </table>
 			<div id="blockfooter">
       {% if is_granted('ROLE_PRIVATE') or is_granted('ROLE_HN') %}
-			Membre d’une association de gestion agréée, le règlement des honoraires par chèque est accepté.<br>
-			<br>
-			Le Dr LAPEYRIE ne pratique pas le tiers payant  avec les organismes de complémentaire santé (mutuelles). Les démarches de remboursement sont réalisées par le patient avec la feuille de soins remise contre paiement.
+			Le montant du présent devis bénéficie du tiers payant intégral uniquement sur présentation de la carte VITALE
+      à jour et de l'attestation papier d'aide médicale complémentaire (mutuelle, CMU, AME, ACS, etc.)<br>
       {% else %}
       Les prestations hospitalières, objet du présent devis, sont établies au nom du CHU de Nîmes représenté par le service de chirurgie orale.<br><br>
-      Ces prestations sont encaissées par le CHU de Nîmes le jour même de l'intervention ou lors de la réception d'une facture à domicile.
+      Ces prestations sont encaissées par la régie CHU de Nîmes le jour même de l'intervention.
       {% endif %}
       </div><!-- /#footer -->
 		</page_footer>
@@ -201,7 +200,7 @@
    <span class="numerodevis">N° {{ datDev|date('Y-m-d') }}-{{idDev}}, valable 6 mois.</span>
  {% endif %}
  {% if is_granted('ROLE_PRIVATE') %}
- Devis de pratique libérale du Dr Lapeyrie
+ Devis
   <span class="numerodevis">N° {{ datDev|date('Y-m-d') }}-{{idDev}}.</span>
 {% endif %}
 {% if is_granted('ROLE_HN') %}

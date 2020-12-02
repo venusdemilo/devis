@@ -12,6 +12,7 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\SecurityContext;
 
 class DevisController extends Controller
 {
@@ -25,6 +26,10 @@ class DevisController extends Controller
     if ($this->get('security.context')->isGranted('ROLE_PRIVATE')) {
       $drtFam = "private";
     }
+    if ($this->get('security.context')->isGranted('ROLE_INTERNE')) {
+      $drtFam = "private";
+    }
+
     if ($this->get('security.context')->isGranted('ROLE_PUBLIC')) {
       $drtFam = "public";
     }
@@ -53,6 +58,9 @@ class DevisController extends Controller
       $drtDev = "hn";
     }
     if ($this->get('security.context')->isGranted('ROLE_PRIVATE')) {
+      $drtDev = "private";
+    }
+    if ($this->get('security.context')->isGranted('ROLE_INTERNE')) {
       $drtDev = "private";
     }
     if ($this->get('security.context')->isGranted('ROLE_PUBLIC')) {
@@ -126,7 +134,10 @@ class DevisController extends Controller
       'prnCar'=>$prnCar,
       'datDev'=>$datDev
 
+
     ));
+
+
     $html2pdf = new \Html2Pdf_Html2Pdf('P','A4','fr');
     $html2pdf->pdf->SetDisplayMode('real');
     $html2pdf->writeHTML($html);
@@ -135,7 +146,7 @@ class DevisController extends Controller
       $attachment = \Swift_Attachment::newInstance($PDFdata, 'Devis-'.$nomCar.'-'.$prnCar.'.pdf', 'application/pdf');
       $message = \Swift_Message::newInstance()
       ->setSubject('Devis du service de chirugie orale - CHU de Nîmes')
-      ->setFrom('nepasrepondre@chirurgie-orale.fr')
+      ->setFrom('no_reply@chirurgie-orale.fr')
       ->setTo($email)
       ->setBody(
           $this->renderView(
@@ -145,6 +156,39 @@ class DevisController extends Controller
           'text/html'
       )->attach($attachment);
        $this->get('mailer')->send($message);
+       // envoi message PL
+       $messageBis = \Swift_Message::newInstance();
+       if ($this->get('security.context')->isGranted('ROLE_PUBLIC'))
+      {
+        $messageBis->setSubject($nomCar.'_'.$prnCar.' : PUBLIC DEVIS');
+      }
+
+       if ($this->get('security.context')->isGranted('ROLE_PRIVATE'))
+    {
+      $messageBis->setSubject($nomCar.'_'.$prnCar.' : PRIVE DEVIS');
+    }
+
+       if ($this->get('security.context')->isGranted('ROLE_HN'))
+      {
+        $messageBis->setSubject($nomCar.'_'.$prnCar.' : HN DEVIS');
+      }
+
+
+       $messageBis->setFrom('noreply@lapeyrie.fr')
+       ->setTo('philippe@lapeyrie.fr')
+       ->setBody(
+          $this->renderView('PLFacturationBundle:Devis:html_devis.html.twig',
+          array(
+           'listPds'=>$listPds,
+           'nomCar'=>$nomCar,
+           'prnCar'=>$prnCar,
+           'datDev'=>$datDev
+            )
+          ),
+           'text/html'
+        );
+        $this->get('mailer')->send($messageBis);
+       ///////////////
        $em = $this->getDoctrine()->getManager();
        $devis = $em
          ->getRepository('PLFacturationBundle:Devis')->find($id);

@@ -53,7 +53,7 @@ Devis
     </thead>
     <tbody>
       {% for devis in listDevis %}
-      <tr data-iddevis="{{ devis.id }}" data-idcarnet="{{ devis.carnet.id }}" data-nomcar="{{ devis.carnet.nomCar }}" data-prncar="{{ devis.carnet.prnCar }}" data-datdev="{{ devis.datDev|date('d/m/Y') }}" data-email="{{ devis.carnet.melCar }}" >
+      <tr  data-iddevis="{{ devis.id }}" data-idcarnet="{{ devis.carnet.id }}" data-nomcar="{{ devis.carnet.nomCar }}" data-prncar="{{ devis.carnet.prnCar }}" data-datdev="{{ devis.datDev|date('d/m/Y') }}" data-email="{{ devis.carnet.melCar }}" >
         <td>{{ devis.carnet.nomCar }}{% if devis.carnet.tieCar == true %}<i style="color:red;" class="fa fa-paperclip" aria-hidden="true"></i>{% endif %}</td>
         <td>{{ devis.carnet.prnCar }}</td>
         <td>{{ devis.totDev|number_format(2,',',' ') }}</td>
@@ -108,17 +108,23 @@ Devis
       <button class="btn btn-sm btn-default" id="voirdevis"><i class="fa fa-eye"></i> Voir devis</button>
       <button class="btn btn-sm btn-default" id="voirpdf"><i class="fa fa-file-pdf-o"></i> Devis pdf</button>
       <button class="btn btn-sm btn-default" id="facacquittee" href="#"><i class="fa fa-file-pdf-o"></i> Facture acquittée pdf</a>
-      <button class ="btn btn-sm btn-default" id="email"><i class="fa fa-envelope-o" aria-hidden="true"> Envoyer</i></button>
+      <button class ="btn btn-sm btn-default" id="email"><i class="fa fa-envelope-o" aria-hidden="true"></i> Envoyer</button>
 
       {% if bool == 0 %}
+    
       <button class="btn btn-sm btn-default" id="supprimerdevis"><i class="fa fa-remove"></i> Supprimer devis</button>
+      <button class="btn btn-sm btn-default" data-saltuser="{{ app.user.salt }}" id="autresdocuments"><i class="fa fa-plus"></i> Ordonnances</button>
       {% endif %}
 
-      <!--
-      <button class="btn btn-sm btn-default" id="modifierdevis"><i class="fa fa-pencil"></i> Modifier devis</button>
-      -->
+
     </div>
   </div>
+
+  <form style="display: none" action="https://php.lapeyrie.fr/" method="POST" id="form">
+    <input type="hidden" id="salt" name="salt" value=""/>
+    <input type="hidden" id="prenom" name="prenom" value=""/>
+    <input type="hidden" id="nom" name="nom" value=""/>
+  </form>
 
   <div id="modalsupprimerdevis" class="modal fade">
     <div class="modal-dialog">
@@ -133,6 +139,7 @@ Devis
           <div class="btn-group ">
           <button class="btn btn-danger btn-sm" id="confirmersupprimerdevis"><i class="fa fa-remove"></i> Supprimer</button>
           <button class="btn btn-info btn-sm" id="annulersupprimerdevis">Annuler</button>
+
         </div>
         </div>
       </div>

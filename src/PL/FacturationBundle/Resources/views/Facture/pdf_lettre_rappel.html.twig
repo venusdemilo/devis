@@ -164,15 +164,16 @@ LETTRE DE RELANCE
 <div style="font-size:4mm; padding-right:10mm; padding-left:10mm;">
 {% block content %}
 
-<p>Madame, Monsieur,<br><br>Après vérification comptable, nous vous informons que la note d’honoraire
+<p>Madame, Monsieur,<br><br>Après vérification comptable et malgré notre précédent courrier nous vous informons que la note d’honoraire
 n° {{ datFac|date('Y-m-d') }}-{{idFac}} établie le {{datFac|date('d/m/Y')}} n’a pas été validée par un règlement. Le montant restant dû est de {{ solFac|number_format(2,',',' ') }} €.</p>
 <p>A défaut de paiement sous 7 jours nous serons contraints de placer votre
 dossier en contentieux sans autre préavis, ce qui vous exposerais à des frais supplémentaires
 <u>non remboursés par l’assurance maladie</u>.</p>
-<p>Le réglement se fait par chèque bancaire rédigé à l'ordre du Dr Lapeyrie ou en espèces
-à l'accueil du service de chirurgie orale. Précisez le numéro de facture au dos du chèque. Attention, nous ne prenons pas les cartes bancaires.</p>
-<p><i>Nous vous rappelons que les actes médicaux sont dûs immédiatement après avoir été effectués. Vous êtes
- engagé au paiement des honoraires par la signature du devis et à ce titre recouvrable par voie d'huissier.</i></p>
+<p>Si vous ne souhaitez pas faire l'avance de frais vous devez <b>impérativement</b> vous rendre au service de chirurgie orale (hall 1, niveau -2)
+  muni de votre carte VITALE à jour ET de votre attestation de complémentaire santé (mutuelle, CMU, ACS) à jour également</p>
+<p>Si vous ne voulez pas vous déplacer vous devez faire l'avance par envoi d'un chèque bancaire rédigé à l'ordre du Dr Lapeyrie. Précisez le numéro de facture au dos du chèque. Nous ne prenons pas les cartes bancaires.</p>
+<p>Les réglements en espèces sont acceptés à l'accueil du service de chirurgie orale.</p>
+<p><i>Nous vous rappelons que les actes médicaux sont dûs immédiatement après avoir été effectués et à défaut recouvrables par voie d'huissier.</i></p>
 <p>Restant persuadé que cet oubli sera corrigé rapidement, je vous prie de croire,
 Madame, Monsieur, en l’assurance de mes salutations distinguées.</p>
 {% endblock %}

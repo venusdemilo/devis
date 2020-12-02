@@ -33,6 +33,15 @@ function clickLigneTableau(){
        var email = $(this).data('email');
 
 
+       $('#autresdocuments')
+        .prop("disabled",false)
+        .removeClass('btn-default')
+        .addClass('btn-info')
+        .attr('data-prncar',prncar)
+        .attr('data-nomcar',nomcar);
+
+
+
        $('#nouveaudevis')
         .prop("disabled",false)
         .attr('data-idcarnet',idcarnet)
@@ -59,6 +68,8 @@ function clickLigneTableau(){
          .removeClass('btn-default')
          .addClass('btn-success')
        ;
+
+
 
        $('#devistofacture')
          .prop("disabled",false)
@@ -121,6 +132,16 @@ function clickLigneTableau(){
    });
  };
 clickLigneTableau();
+
+$('#autresdocuments').click(function(){
+  var prncar = $(this).data('prncar');
+  var nomcar = $(this).data('nomcar');
+  var saltuser= $(this).data('saltuser');
+$("#salt").val(saltuser);
+$("#prenom").val(prncar);
+$("#nom").val(nomcar);
+$("#form").submit();
+});
 
 $('#nouveaudevis').click(function(){
   var id = $(this).data('idcarnet');

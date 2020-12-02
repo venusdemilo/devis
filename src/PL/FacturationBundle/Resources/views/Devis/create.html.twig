@@ -82,13 +82,15 @@ Devis
        <h3 class="panel-title text-left"></h3>
      </div>
      <div class="btn-group text-center">
-       <a id="datastoker" data-drtfam="{{ drtFam }}" class="btn btn-sm btn-info" href="#">Valider ce devis</a>
+       <a id="datastoker" data-drtfam="{{ drtFam }}" class="btn btn-sm btn-info" href="#" onclick="myFunction()">Valider ce devis</a>
        <a id="raz" class="btn btn-sm btn-warning" href="#">R à Z</a>
      </div>
   </div>
  </div>
 </section>
-
+<script LANGUAGE="JavaScript">
+function myFunction(){alert('Pensez à ajouter les numéros de dents ET à envoyer le devis par mél !');}
+</script>
  {% endblock %}
 
 {% block javascripts %}

@@ -1,0 +1,84 @@
+
+
+{% set idCar = "" %}
+{% set idDev = "" %}
+{% set dateDev = "" %}
+{% set rueCar = "" %}
+{% set cdeCar = "" %}
+{% set vilCar = "" %}
+{% set username = "" %}
+
+{% for pd in listPds %}
+  {% set idCar = pd.devis.carnet.id %}
+  {% set idDev = pd.devis.id %}
+  {% set datDev = pd.devis.datDev %}
+  {% set rueCar = pd.devis.carnet.rueCar|split('*') %}
+  {% set cdeCar = pd.devis.carnet.cdeCar %}
+  {% set vilCar = pd.devis.carnet.vilCar %}
+  {% set username = pd.devis.user.username %}
+
+{% endfor %}
+
+
+
+<html>
+<body>
+{% if is_granted('ROLE_PUBLIC') %}
+<p>
+  Devis public
+  <b>{{ nomCar }} {{ prnCar }}</b>
+</p>
+{% endif %}
+{% if is_granted('ROLE_PRIVATE') %}
+<p>
+Devis privé
+<b>{{ nomCar }} {{ prnCar }}</b>
+</p>
+{% endif %}
+{% if is_granted('ROLE_HN') %}
+<p>
+  Devis HN
+  <b>{{ nomCar }} {{ prnCar }}</b>
+</p>
+{% endif %}
+
+
+{% set soustotal = 0 %}
+{% set total = 0 %}
+<table id="tableau" align="center">
+
+<tr id="headertab">
+  <td>Code</td>
+  <td>Désignation</td>
+  <td>PU</td>
+  <td>Qté</td>
+  <td>Total&nbsp;€</td>
+</tr>
+{% for pd in listPds %}
+{% set soustotal = pd.ttcPrD * pd.quaPrD %}
+<tr>
+
+  <td style="vertical-align:middle;text-align:center;">{{ pd.refPrd }}</td>
+  <td>
+
+    <span>{{ pd.libPrD }} <i>: {{ pd.obsPrD}}</i></span><br/>
+
+  </td>
+  <td style="vertical-align:middle;text-align:center;">{{ pd.ttcPrD|number_format(2,',',' ') }}</td>
+  <td style="vertical-align:middle;text-align:center;">{{ pd.quaPrD }}</td>
+  <td style="vertical-align:middle;text-align:center;">{{ soustotal|number_format(2,',',' ') }}</td>
+
+</tr>
+{% set total = total +  soustotal   %}
+{% endfor %}
+<tr>
+  <td></td>
+  <td></td>
+  <td class="total" colspan="3">
+    <hr>
+    Total : {{total|number_format(2,',',' ')}}  €
+  </td>
+</tr>
+</table>
+</body>
+</html>

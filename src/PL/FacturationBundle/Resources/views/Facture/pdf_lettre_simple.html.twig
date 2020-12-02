@@ -8,18 +8,16 @@ NOTE D'HONORAIRES
 {% block content %}
 
 <p>Madame, Monsieur,</p>
-<p>Conformément aux termes de notre consultation, veuillez trouver ci-joint, la
-note d’honoraire n° {{ datFac|date('Y-m-d') }}-{{idFac}} d'un montant de {{ totFac|number_format(2,',',' ') }} €.
-La feuille de soins (feuille de remboursement), ou la facture pour les actes non
-pris en charge par l’assurance maladie, vous sera envoyée par retour de courrier.</p>
-<p>Si vous êtes ayant droit à la CMUC, l'ACE ou l'AME vous devez vous déplacer à la consultation de chirurgie orale,
-muni de votre carte d’assuré social <u>ET de l’attestation papier à jour</u> justifiant de vos droits. A défaut il n'est pas possible de
-faire fonctionner le tiers payant et vous devez acquitter les honoraires comme les autres patients.</p>
-<p style="text-align:center;"><b>Si vous avez déjà déposé votre paiement, vous n'êtes pas concerné par ce courrier.</b></p>
-<p>Le réglement se fait par chèque bancaire rédigé à l'ordre du Dr Lapeyrie ou en espèces
-à l'accueil du service de chirurgie orale. Précisez le numéro de facture au dos du chèque. Nous ne prenons pas les cartes bancaires.</p>
+<p>Veuillez trouver jointe la facture n° {{ datFac|date('Y-m-d') }}-{{idFac}} d'un montant de {{ totFac|number_format(2,',',' ') }} €.
+Vous recevez cette facture car nous n'avons pas pu utiliser votre carte VITALE en tiers payant intégral.</p>
+<p>Vous devez régler cette facture.</p>
+<p> Si vous ne souhaitez pas faire l'avance de frais vous devez vous déplacer au service de chirurgie orale (hall 1, niveau -2) muni de votre
+carte VITALE à jour ET de votre attestation de complémentaire santé (mutuelle, CMU, ACS) à jour également. </p>
+<p>Si le tiers payant de votre carte VITALE ne fonctionne pas, vous devrez faire l'avance par l'envoi d'un chèque bancaire rédigé à l'ordre du Dr Lapeyrie ou en espèces
+directement à l'accueil du service de chirurgie orale. Précisez le numéro de facture au dos du chèque. Nous ne prenons pas les cartes bancaires. Vous recevrez après paiement, par voie postale,
+une feuille de remboursement (feuille de soins) et devrez vous même assurer les démarches de remboursement. </p>
 <p><i>Pour information les actes médicaux sont dûs immédiatement après avoir été effectués. Aussi
-nous vous demandons de procéder au paiement dans les plus brefs délais.</i></p>
+nous vous demandons instamment de vous préoccuper de ce réglement  dans les plus brefs délais.</i></p>
  <p>En vous remerciant de la confiance que vous nous accordez.</p>
 {% endblock %}
 {% block signature%}

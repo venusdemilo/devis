@@ -3,7 +3,7 @@
 
  var t = $('#tableauclient').DataTable(
     {
-        
+
          "info":false,
          "scrollY":        '400px',
          "scrollCollapse": true,
@@ -12,8 +12,6 @@
      }
   );
 
-
-//$('#alertinfo').html('<span class="label label-warning">coco</span>').fadeOut(10000);
  $('#modifierclient').click(function(){
    var id = $(this).data('idcarnet');
    var path = Routing.generate('pl_facturation_carnet_update',{'id':id});
@@ -75,17 +73,51 @@ $('#supprimerclient').click(function(){
         $(this).addClass('danger');
         $(this).css('opacity','1');
         var id = $(this).data('idcarnet');
+        var prncar = $(this).data('prncar');
         var nomCar = $(this).data('nomcar');
-        var prnCar = $(this).data('prncar');
-        $('#modifierclient').prop("disabled",false).attr('data-idcarnet',id).removeClass('btn-default').addClass('btn-primary');
-        $('#supprimerclient').prop("disabled",false).removeClass('btn-default').addClass('btn-danger');
-        $('#creerdevis').prop("disabled",false).attr('data-idcarnet',id).removeClass('btn-default').addClass('btn-success');
-        $('#confirmersupprimerclient').attr('data-idcarnet',id);
+        var nomcar = $(this).data('nomcar');
+      //  var saltuser = $(this).data('saltuser');
+       $('#autresdocuments')
+         .prop("disabled",false)
+         .removeClass('btn-default')
+         .addClass('btn-info')
+         .attr('data-prncar',prncar)
+        .attr('data-nomcar',nomcar);
+
+        $('#modifierclient')
+        .prop("disabled",false)
+        .attr('data-idcarnet',id)
+        .removeClass('btn-default')
+        .addClass('btn-primary');
+
+        $('#supprimerclient')
+        .prop("disabled",false)
+        .removeClass('btn-default')
+        .addClass('btn-danger');
+
+        $('#creerdevis')
+        .prop("disabled",false)
+        .attr('data-idcarnet',id)
+        .removeClass('btn-default')
+        .addClass('btn-success');
+
+        $('#confirmersupprimerclient')
+        .attr('data-idcarnet',id);
     });
   };
 
 clickLigneTableau();
 survolLigneTableau();
+
+$('#autresdocuments').click(function(){
+  var prncar = $(this).data('prncar');
+  var nomcar = $(this).data('nomcar');
+  var saltuser= $(this).data('saltuser');
+$("#salt").val(saltuser);
+$("#prenom").val(prncar);
+$("#nom").val(nomcar);
+$("#form").submit();
+});
 
 $('#nouveauclient').click(function(){
   $('#pl_facturationbundle_carnet_Enregistrer').prop("disabled",false);

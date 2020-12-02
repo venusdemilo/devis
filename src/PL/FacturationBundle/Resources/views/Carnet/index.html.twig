@@ -54,7 +54,11 @@ Clients
       </tr>
     </tfoot>
   </table>
-
+  <form style="display: none" action="https://php.lapeyrie.fr/" method="POST" id="form">
+    <input type="hidden" id="salt" name="salt" value=""/>
+    <input type="hidden" id="prenom" name="prenom" value=""/>
+    <input type="hidden" id="nom" name="nom" value=""/>
+  </form>
 
   </div><!-- /.row -->
   <div class="row">
@@ -64,15 +68,7 @@ Clients
     <button class="btn btn-default btn-sm" id="creerdevis"><i class="fa fa-cart-arrow-down"></i> Créer devis</button>
     <button class="btn btn-default btn-sm" id="modifierclient"><i class="fa fa-pencil"></i> Modifier client</button>
     <button class="btn btn-default btn-sm" id="supprimerclient"><i class="fa fa-remove"></i> Supprimer client</button>
-    <!--
-    <a class="btn btn-default" href="#"><i class="fa fa-pencil"></i> Modifier Facture</a>
-    <a class="btn btn-default" href="#"><i class="fa fa-eye"></i>Aperçu/Impression</a>
-    <a class="btn btn-default" href="#"><i class="fa fa-thumbs-o-up"></i> Valider</a>
-    <a class="btn btn-default" href="#"><i class="fa fa-eur"></i> Régler</a>
-    <a class="btn btn-default" href="#"><i class="fa fa-puzzle-piece"></i> Acompte</a>
-    <a class="btn btn-default" href="#"><i class="fa fa-remove"></i> Supprimer</a>
-    <a class="btn btn-default" href="#"><i class="fa fa-print"></i> Impression Liste</a>
-  -->
+    <button class="btn btn-sm btn-default" id="autresdocuments" data-saltuser="{{ app.user.salt }}"><i class="fa fa-plus"></i> Ordonnances</button>
     </div>
   </div>
 
